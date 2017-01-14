@@ -1,5 +1,5 @@
 {
-  "name": "escope",
+  "name": "eslint-scope",
   "description": "ECMAScript scope analyzer",
   "homepage": "http://github.com/estools/escope",
   "main": "lib/index.js",
