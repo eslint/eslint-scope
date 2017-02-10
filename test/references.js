@@ -20,6 +20,7 @@
 //  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 //  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 //  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+"use strict";
 
 const expect = require('chai').expect;
 const espree = require('../third_party/espree');
@@ -554,7 +555,7 @@ describe('References:', function() {
                 expect(scope.variables).to.have.length.of.at.least(1);
                 expect(scope.variables[0].name).to.equal('a');
 
-                const { references } = scope.variables[0];
+                const references = scope.variables[0].references;
                 expect(references).to.have.length.of.at.least(1);
 
                 references.forEach(reference => {

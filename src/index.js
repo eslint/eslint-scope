@@ -45,6 +45,7 @@
  * The main interface is the {@link analyze} function.
  * @module escope
  */
+"use strict";
 
 /*jslint bitwise:true */
 
