@@ -34,7 +34,6 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     plumber = require('gulp-plumber'),
     source = require('vinyl-source-stream'),
-    browserify = require('browserify'),
     lazypipe = require('lazypipe'),
     eslint = require('gulp-eslint'),
     fs = require('fs');
@@ -85,16 +84,7 @@ gulp.task('build', function () {
     return gulp.src(SOURCE).pipe(build());
 });
 
-gulp.task('browserify', [ 'build' ], function () {
-    return browserify({
-        entries: [ './lib/index.js' ]
-    })
-    .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(gulp.dest('build'))
-});
-
-gulp.task('test', [ 'build' ], function () {
+gulp.task('test', [ 'lint', 'build' ], function () {
     return gulp.src(TEST)
         .pipe(mocha({
             reporter: 'spec',

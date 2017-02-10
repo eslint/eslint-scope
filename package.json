@@ -1,22 +1,26 @@
 {
-  "name": "escope",
-  "description": "ECMAScript scope analyzer",
-  "homepage": "http://github.com/estools/escope",
+  "name": "eslint-scope",
+  "description": "ECMAScript scope analyzer for ESLint",
+  "homepage": "http://github.com/eslint/eslint-scope",
   "main": "lib/index.js",
   "version": "3.6.0",
   "engines": {
     "node": ">=0.4.0"
   },
-  "maintainers": [
-    {
-      "name": "Yusuke Suzuki",
-      "email": "utatane.tea@gmail.com",
-      "web": "http://github.com/Constellation"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/estools/escope.git"
+  "repository": "eslint/eslint-scope",
+  "bugs": {
+    "url": "https://github.com/eslint/eslint-scope/issues"
+  },
+  "license": "BSD-2-Clause",
+  "scripts": {
+    "test": "gulp travis",
+    "unit-test": "gulp test",
+    "lint": "gulp lint",
+    "release": "eslint-release",
+    "ci-release": "eslint-ci-release",
+    "gh-release": "eslint-gh-release",
+    "alpharelease": "eslint-prerelease alpha",
+    "betarelease": "eslint-prerelease beta"
   },
   "dependencies": {
     "es6-map": "^0.1.3",
@@ -28,8 +32,8 @@
     "babel": "^6.3.26",
     "babel-preset-es2015": "^6.3.13",
     "babel-register": "^6.3.13",
-    "browserify": "^13.0.0",
     "chai": "^3.4.1",
+    "eslint-release": "^0.10.1",
     "espree": "^3.1.1",
     "esprima": "^2.7.1",
     "gulp": "^3.9.0",
@@ -43,16 +47,7 @@
     "gulp-plumber": "^1.0.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-tag-version": "^1.3.0",
-    "jsdoc": "^3.4.0",
     "lazypipe": "^1.0.1",
-    "vinyl-source-stream": "^1.1.0",
-    "typescript-eslint-parser": "^1.0.0"
-  },
-  "license": "BSD-2-Clause",
-  "scripts": {
-    "test": "gulp travis",
-    "unit-test": "gulp test",
-    "lint": "gulp lint",
-    "jsdoc": "jsdoc src/*.js README.md"
+    "vinyl-source-stream": "^1.1.0"
   }
 }
