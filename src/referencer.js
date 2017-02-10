@@ -227,13 +227,11 @@ class Referencer extends esrecurse.Visitor {
             });
         }
 
-        if (node.body) {
-            // Skip BlockStatement to prevent creating BlockStatement scope.
-            if (node.body.type === Syntax.BlockStatement) {
-                this.visitChildren(node.body);
-            } else {
-                this.visit(node.body);
-            }
+        // Skip BlockStatement to prevent creating BlockStatement scope.
+        if (node.body.type === Syntax.BlockStatement) {
+            this.visitChildren(node.body);
+        } else {
+            this.visit(node.body);
         }
 
         this.close(node);
