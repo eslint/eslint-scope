@@ -2,7 +2,7 @@
   "name": "eslint-scope",
   "description": "ECMAScript scope analyzer for ESLint",
   "homepage": "http://github.com/eslint/eslint-scope",
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "version": "3.6.0",
   "engines": {
     "node": ">=0.4.0"
