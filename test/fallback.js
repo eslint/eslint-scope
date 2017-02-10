@@ -21,9 +21,10 @@
 //  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 //  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import { expect } from 'chai';
-import esprima from 'esprima';
-import { analyze } from '..';
+const expect = require('chai').expect;
+const esprima = require('../third_party/esprima');
+const analyze = require('..').analyze;
+
 
 describe('fallback option', function() {
     it('should raise an error when it encountered an unknown node if no fallback.', function() {

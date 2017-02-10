@@ -27,7 +27,7 @@
  * functions.
  * @class Variable
  */
-export default class Variable {
+class Variable {
     constructor(name, scope) {
         /**
          * The variable name, as given in the source code.
@@ -77,5 +77,7 @@ Variable.Variable = 'Variable';
 Variable.ImportBinding = 'ImportBinding';
 Variable.TDZ = 'TDZ';
 Variable.ImplicitGlobalVariable = 'ImplicitGlobalVariable';
+
+module.exports.default = Variable;
 
 /* vim: set sw=4 ts=4 et tw=80 : */

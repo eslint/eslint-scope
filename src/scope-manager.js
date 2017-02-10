@@ -22,28 +22,27 @@
   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import WeakMap from 'es6-weak-map';
-import Scope from './scope';
-import assert from 'assert';
+const WeakMap = require('es6-weak-map');
+const ScopeMain = require('./scope');
+const Scope = ScopeMain.default;
+const assert = require('assert');
 
-import {
-    GlobalScope,
-    CatchScope,
-    WithScope,
-    ModuleScope,
-    ClassScope,
-    SwitchScope,
-    FunctionScope,
-    ForScope,
-    TDZScope,
-    FunctionExpressionNameScope,
-    BlockScope
-} from './scope';
+const GlobalScope = ScopeMain.GlobalScope;
+const CatchScope = ScopeMain.CatchScope;
+const WithScope = ScopeMain.WithScope;
+const ModuleScope = ScopeMain.ModuleScope;
+const ClassScope = ScopeMain.ClassScope;
+const SwitchScope = ScopeMain.SwitchScope;
+const FunctionScope = ScopeMain.FunctionScope;
+const ForScope = ScopeMain.ForScope;
+const TDZScope = ScopeMain.TDZScope;
+const FunctionExpressionNameScope = ScopeMain.FunctionExpressionNameScope;
+const BlockScope = ScopeMain.BlockScope;
 
 /**
  * @class ScopeManager
  */
-export default class ScopeManager {
+class ScopeManager {
     constructor(options) {
         this.scopes = [];
         this.globalScope = null;
@@ -241,5 +240,7 @@ export default class ScopeManager {
         return this.__options.ecmaVersion >= 6;
     }
 }
+
+module.exports.default = ScopeManager;
 
 /* vim: set sw=4 ts=4 et tw=80 : */

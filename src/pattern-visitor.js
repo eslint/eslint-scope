@@ -22,14 +22,14 @@
   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import { Syntax } from 'estraverse';
-import esrecurse from 'esrecurse';
+const Syntax = require('estraverse').Syntax;
+const esrecurse = require('esrecurse');
 
 function getLast(xs) {
     return xs[xs.length - 1] || null;
 }
 
-export default class PatternVisitor extends esrecurse.Visitor {
+class PatternVisitor extends esrecurse.Visitor {
     static isPattern(node) {
         var nodeType = node.type;
         return (
@@ -130,5 +130,7 @@ export default class PatternVisitor extends esrecurse.Visitor {
         this.visit(node.callee);
     }
 }
+
+module.exports.default = PatternVisitor;
 
 /* vim: set sw=4 ts=4 et tw=80 : */

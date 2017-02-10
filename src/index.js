@@ -48,14 +48,14 @@
 
 /*jslint bitwise:true */
 
-import assert from 'assert';
+const assert = require('assert');
 
-import ScopeManager from './scope-manager';
-import Referencer from './referencer';
-import Reference from './reference';
-import Variable from './variable';
-import Scope from './scope';
-import { version } from '../package.json';
+const ScopeManager = require('./scope-manager').default;
+const Referencer = require('./referencer').default;
+const Reference = require('./reference').default;
+const Variable = require('./variable').default;
+const Scope = require('./scope').default;
+const version = require('../package.json').version;
 
 function defaultOptions() {
     return {
@@ -114,7 +114,7 @@ function updateDeeply(target, override) {
  * @param {string} [providedOptions.fallback='iteration'] - A kind of the fallback in order to encounter with unknown node. See [esrecurse](https://github.com/estools/esrecurse)'s the `fallback` option.
  * @return {ScopeManager}
  */
-export function analyze(tree, providedOptions) {
+function analyze(tree, providedOptions) {
     var scopeManager, referencer, options;
 
     options = updateDeeply(defaultOptions(), providedOptions);
@@ -129,7 +129,7 @@ export function analyze(tree, providedOptions) {
     return scopeManager;
 }
 
-export {
+module.exports = {
     /** @name module:escope.version */
     version,
     /** @name module:escope.Reference */
@@ -139,7 +139,8 @@ export {
     /** @name module:escope.Scope */
     Scope,
     /** @name module:escope.ScopeManager */
-    ScopeManager
+    ScopeManager,
+    analyze
 };
 
 

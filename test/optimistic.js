@@ -21,9 +21,9 @@
 // THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-import { expect } from 'chai';
-import { analyze } from '..';
-import { parse } from 'esprima';
+const expect = require('chai').expect;
+const parse = require('../third_party/esprima').parse;
+const analyze = require('..').analyze;
 
 describe('optimistic', function() {
     it('direct call to eval', function() {

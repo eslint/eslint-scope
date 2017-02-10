@@ -21,10 +21,10 @@
 //  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 //  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import { expect } from 'chai';
-import harmony from '../third_party/esprima';
-import espree from '../third_party/espree';
-import { analyze } from '..';
+const expect = require('chai').expect;
+const harmony = require('../third_party/esprima');
+const espree = require('../third_party/espree');
+const analyze = require('..').analyze;
 
 describe('ES6 destructuring assignments', function() {
     it('Pattern in var in ForInStatement', function() {

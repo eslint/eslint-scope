@@ -21,9 +21,9 @@
 //  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 //  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import { expect } from 'chai';
-import espree from '../third_party/espree';
-import { analyze } from '..';
+const expect = require('chai').expect;
+const espree = require('../third_party/espree');
+const analyze = require('..').analyze;
 
 describe('References:', function() {
     describe('When there is a `let` declaration on global,', function() {

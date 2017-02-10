@@ -21,10 +21,10 @@
 //  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 //  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import { expect } from 'chai';
-import { visit } from 'esrecurse';
-import espree from '../third_party/espree';
-import { analyze } from '..';
+const expect = require('chai').expect;
+const visit = require('esrecurse').visit;
+const espree = require('../third_party/espree');
+const analyze = require('..').analyze;
 
 describe('ScopeManager.prototype.getDeclaredVariables', function() {
     const verify = (ast, type, expectedNamesList) => {

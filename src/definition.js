@@ -22,12 +22,12 @@
   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import Variable from './variable';
+const Variable = require('./variable');
 
 /**
  * @class Definition
  */
-export default class Definition {
+class Definition {
     constructor(type, name, node, parent, index, kind) {
         /**
          * @member {String} Definition#type - type of the occurrence (e.g. "Parameter", "Variable", ...).
@@ -70,9 +70,9 @@ class ParameterDefinition extends Definition {
     }
 }
 
-export {
+module.exports = {
     ParameterDefinition,
     Definition
-}
+};
 
 /* vim: set sw=4 ts=4 et tw=80 : */

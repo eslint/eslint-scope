@@ -30,7 +30,7 @@ const RW = READ | WRITE;
  * A Reference represents a single occurrence of an identifier in code.
  * @class Reference
  */
-export default class Reference {
+class Reference {
     constructor(ident, scope, flag,  writeExpr, maybeImplicitGlobal, partial, init) {
         /**
          * Identifier syntax node.
@@ -150,5 +150,7 @@ Reference.WRITE = WRITE;
  * @private
  */
 Reference.RW = RW;
+
+module.exports.default = Reference;
 
 /* vim: set sw=4 ts=4 et tw=80 : */
