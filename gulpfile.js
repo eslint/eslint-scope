@@ -33,7 +33,6 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     plumber = require('gulp-plumber'),
     source = require('vinyl-source-stream'),
-    browserify = require('browserify'),
     lazypipe = require('lazypipe'),
     eslint = require('gulp-eslint'),
     fs = require('fs');
@@ -63,15 +62,6 @@ var ESLINT_OPTION = {
         es6: true
     }
 };
-
-gulp.task('browserify', function () {
-    return browserify({
-        entries: [ './src/index.js' ]
-    })
-    .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(gulp.dest('build'))
-});
 
 gulp.task('test', function () {
     return gulp.src(TEST)
