@@ -63,7 +63,7 @@ var ESLINT_OPTION = {
     }
 };
 
-gulp.task('test', [ 'lint', 'build' ], function () {
+gulp.task('test', function () {
     return gulp.src(TEST)
         .pipe(mocha({
             reporter: 'spec',
