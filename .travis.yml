@@ -5,7 +5,4 @@ node_js:
     - "6"
     - "7"
 sudo: false
-before_script:
-    - npm install -g npm-install-peers
-    - npm-install-peers
 script: "npm test"
