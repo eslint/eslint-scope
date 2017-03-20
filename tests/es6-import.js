@@ -118,9 +118,6 @@ describe("import declaration", () => {
         expect(scope.variables[0].defs[0].type).to.be.equal("ImportBinding");
         expect(scope.references).to.have.length(0);
     });
-
-    // TODO: Should parse it.
-    // import from "mod";
 });
 
 // vim: set sw=4 ts=4 et tw=80 :

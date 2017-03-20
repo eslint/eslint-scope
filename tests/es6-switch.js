@@ -64,9 +64,9 @@ describe("ES6 switch", () => {
         expect(scope.variables[0].name).to.be.equal("i");
         expect(scope.variables[1].name).to.be.equal("test");
         expect(scope.references).to.have.length(5);
-        expect(scope.references[0].identifier.name).to.be.equal("hello");
+        expect(scope.references[0].identifier.name).to.be.equal("i");
         expect(scope.references[1].identifier.name).to.be.equal("i");
-        expect(scope.references[2].identifier.name).to.be.equal("i");
+        expect(scope.references[2].identifier.name).to.be.equal("hello");
         expect(scope.references[3].identifier.name).to.be.equal("test");
         expect(scope.references[4].identifier.name).to.be.equal("test");
     });

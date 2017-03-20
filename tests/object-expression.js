@@ -40,9 +40,10 @@ describe("object expression", () => {
         const scope = analyze(ast).scopes[0];
 
         expect(scope.variables).to.have.length(1);
-        expect(scope.references).to.have.length(2);
+        expect(scope.references).to.have.length(3);
         expect(scope.variables[0].name).to.be.equal("a");
         expect(scope.references[0].identifier.name).to.be.equal("a");
-        expect(scope.references[1].identifier.name).to.be.equal("a");
+        expect(scope.references[1].identifier.name).to.be.equal("foo");
+        expect(scope.references[2].identifier.name).to.be.equal("a");
     });
 });

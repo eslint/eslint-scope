@@ -4,4 +4,7 @@ env:
 parserOptions:
     ecmaVersion: 6
 
+rules:
+    require-jsdoc: "off"
+
 extends: eslint

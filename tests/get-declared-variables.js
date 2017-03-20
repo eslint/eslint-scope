@@ -23,7 +23,7 @@
 "use strict";
 
 const expect = require("chai").expect;
-const visit = require("esrecurse").visit;
+const Visitor = require("../lib/visitor");
 const espree = require("./util/espree");
 const analyze = require("..").analyze;
 
@@ -35,7 +35,7 @@ describe("ScopeManager.prototype.getDeclaredVariables", () => {
             sourceType: "module"
         });
 
-        visit(ast, {
+        const visitor = new Visitor({
             [type](node) {
                 const expected = expectedNamesList.shift();
                 const actual = scopeManager.getDeclaredVariables(node);
@@ -52,6 +52,8 @@ describe("ScopeManager.prototype.getDeclaredVariables", () => {
                 this.visitChildren(node);
             }
         });
+
+        visitor.visit(ast);
 
         expect(expectedNamesList).to.have.length(0);
     }

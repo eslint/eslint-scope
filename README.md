@@ -15,14 +15,14 @@ Example:
 ```js
 var eslintScope = require('eslint-scope');
 var espree = require('espree');
-var estraverse = require('estraverse');
 
 var ast = espree.parse(code);
 var scopeManager = eslintScope.analyze(ast);
 
 var currentScope = scopeManager.acquire(ast);   // global scope
+var travserser = new eslintScope.Traverser();
 
-estraverse.traverse(ast, {
+travserser.traverse(ast, {
     enter: function(node, parent) {
         // do stuff
 
@@ -30,7 +30,7 @@ estraverse.traverse(ast, {
             currentScope = scopeManager.acquire(node);  // get current function scope
         }
     },
-    leave: function(node, parent) {
+    leave: function(node) {
         if (/Function/.test(node.type)) {
             currentScope = currentScope.upper;  // set to parent scope
         }

@@ -26,10 +26,6 @@
     "README.md",
     "lib"
   ],
-  "dependencies": {
-    "esrecurse": "^4.1.0",
-    "estraverse": "^4.1.1"
-  },
   "devDependencies": {
     "chai": "^3.4.1",
     "eslint": "^3.15.0",
@@ -40,7 +36,7 @@
     "mocha": "^3.2.0",
     "npm-license": "^0.3.3",
     "shelljs": "^0.7.6",
-    "typescript": "~2.0.10",
-    "typescript-eslint-parser": "^1.0.0"
+    "typescript": "~2.2.1",
+    "typescript-eslint-parser": "^2.0.0"
   }
 }
