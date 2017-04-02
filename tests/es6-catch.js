@@ -36,7 +36,6 @@ describe("ES6 catch", () => {
                 let e = 20;
                 a;
                 b;
-                let c = 30;
                 c;
                 d;
             }
@@ -77,16 +76,14 @@ describe("ES6 catch", () => {
         expect(scope.type).to.be.equal("block");
         expect(scope.block.type).to.be.equal("BlockStatement");
         expect(scope.isStrict).to.be.false;
-        expect(scope.variables).to.have.length(2);
+        expect(scope.variables).to.have.length(1);
         expect(scope.variables.map(variable => variable.name)).to.be.eql([
-            "e",
-            "c"
+            "e"
         ]);
         expect(scope.references.map(ref => ref.identifier.name)).to.be.eql([
             "e",
             "a",
             "b",
-            "c",
             "c",
             "d"
         ]);
