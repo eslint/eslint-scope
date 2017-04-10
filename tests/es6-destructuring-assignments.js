@@ -960,7 +960,7 @@ describe("ES6 destructuring assignments", () => {
                     hello: {
                         world
                     }
-                }) = object;
+                } = object);
             }());
         `);
 
@@ -1011,7 +1011,7 @@ describe("ES6 destructuring assignments", () => {
                     hello: {
                         world
                     }
-                }) = object;
+                } = object);
             }());
         `);
 

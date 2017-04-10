@@ -55,35 +55,6 @@ describe("ES6 block scope", () => {
         expect(scope.references[1].identifier.name).to.be.equal("i");
     });
 
-    it("let is materialized in ES6 block scope#2", () => {
-        const ast = espree(`
-            {
-                let i = 20;
-                var i = 20;
-                i;
-            }
-        `);
-
-        const scopeManager = analyze(ast, { ecmaVersion: 6 });
-
-        expect(scopeManager.scopes).to.have.length(2);  // Program and BlcokStatement scope.
-
-        let scope = scopeManager.scopes[0];
-
-        expect(scope.type).to.be.equal("global");
-        expect(scope.variables).to.have.length(1);  // No variable in Program scope.
-        expect(scope.variables[0].name).to.be.equal("i");
-
-        scope = scopeManager.scopes[1];
-        expect(scope.type).to.be.equal("block");
-        expect(scope.variables).to.have.length(1);  // `i` in block scope.
-        expect(scope.variables[0].name).to.be.equal("i");
-        expect(scope.references).to.have.length(3);
-        expect(scope.references[0].identifier.name).to.be.equal("i");
-        expect(scope.references[1].identifier.name).to.be.equal("i");
-        expect(scope.references[2].identifier.name).to.be.equal("i");
-    });
-
     it("function delaration is materialized in ES6 block scope", () => {
         const ast = espree(`
             {
