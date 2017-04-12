@@ -1,3 +1,8 @@
+v3.7.1 - April 12, 2017
+
+* ced6262 Fix: restore previous Scope API exports from escope (#31) (Vitor Balocco)
+* 5c3d966 Fix: Remove and Modify tests that contain invalid ES6 syntax (#29) (Reyad Attiyat)
+
 v3.7.0 - March 17, 2017
 
 * 9e27835 Chore: Add files section to package.json (#24) (Ilya Volodin)
