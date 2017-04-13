@@ -28,6 +28,7 @@ const espree = require("./util/espree");
 const analyze = require("..").analyze;
 
 describe("ScopeManager.prototype.getDeclaredVariables", () => {
+
     /* eslint-disable require-jsdoc */
     function verify(ast, type, expectedNamesList) {
         const scopeManager = analyze(ast, {
