@@ -27,8 +27,7 @@
     "lib"
   ],
   "dependencies": {
-    "esrecurse": "^4.1.0",
-    "estraverse": "^4.1.1"
+    "esrecurse": "^4.1.0"
   },
   "devDependencies": {
     "chai": "^3.4.1",
