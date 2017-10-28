@@ -30,6 +30,7 @@ module.exports = function(code, sourceType) {
 
     return espree.parse(code, {
         range: true,
+        ecmaVersion: 7,
         sourceType
     });
 };
