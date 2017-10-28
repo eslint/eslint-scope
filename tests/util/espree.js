@@ -23,14 +23,14 @@
 */
 "use strict";
 
-var espree = require("espree");
+const espree = require("espree");
 
 module.exports = function(code, sourceType) {
     sourceType = sourceType || "module";
 
     return espree.parse(code, {
-        // enable es6 features.
-        sourceType: sourceType
+        range: true,
+        sourceType
     });
 };
 
