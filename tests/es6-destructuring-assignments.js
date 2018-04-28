@@ -81,7 +81,7 @@ describe("ES6 destructuring assignments", () => {
 
         const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-        expect(scopeManager.scopes).to.have.length(4);  // [global, function, TDZ, for]
+        expect(scopeManager.scopes).to.have.length(3);  // [global, function, for]
 
         let scope = scopeManager.scopes[0];
 
@@ -92,22 +92,12 @@ describe("ES6 destructuring assignments", () => {
         expect(scope.implicit.left[0].identifier.name).to.equal("array");
 
         scope = scopeManager.scopes[2];
-        expect(scope.type).to.equal("TDZ");
-        expect(scope.variables).to.have.length(3);
-        expect(scope.variables[0].name).to.equal("a");
-        expect(scope.variables[1].name).to.equal("b");
-        expect(scope.variables[2].name).to.equal("c");
-        expect(scope.references).to.have.length(1);
-        expect(scope.references[0].identifier.name).to.equal("array");
-        expect(scope.references[0].isWrite()).to.be.false;
-
-        scope = scopeManager.scopes[3];
         expect(scope.type).to.equal("for");
         expect(scope.variables).to.have.length(3);
         expect(scope.variables[0].name).to.equal("a");
         expect(scope.variables[1].name).to.equal("b");
         expect(scope.variables[2].name).to.equal("c");
-        expect(scope.references).to.have.length(3);
+        expect(scope.references).to.have.length(4);
         expect(scope.references[0].identifier.name).to.equal("a");
         expect(scope.references[0].isWrite()).to.be.true;
         expect(scope.references[0].partial).to.be.true;
@@ -120,6 +110,9 @@ describe("ES6 destructuring assignments", () => {
         expect(scope.references[2].isWrite()).to.be.true;
         expect(scope.references[2].partial).to.be.true;
         expect(scope.references[2].resolved).to.equal(scope.variables[2]);
+        expect(scope.references[3].identifier.name).to.equal("array");
+        expect(scope.references[3].isWrite()).to.be.false;
+        expect(scope.references[3].resolved).to.be.null;
     });
 
     it("Pattern with default values in var in ForInStatement", () => {
@@ -183,7 +176,7 @@ describe("ES6 destructuring assignments", () => {
 
         const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-        expect(scopeManager.scopes).to.have.length(4);  // [global, function, TDZ, for]
+        expect(scopeManager.scopes).to.have.length(3);  // [global, function, for]
 
         let scope = scopeManager.scopes[0];
 
@@ -191,28 +184,18 @@ describe("ES6 destructuring assignments", () => {
         expect(scope.variables).to.have.length(0);
         expect(scope.references).to.have.length(0);
         expect(scope.implicit.left).to.have.length(2);
-        expect(scope.implicit.left[0].identifier.name).to.equal("array");
-        expect(scope.implicit.left[0].from.type).to.equal("TDZ");
-        expect(scope.implicit.left[1].identifier.name).to.equal("d");
+        expect(scope.implicit.left[0].identifier.name).to.equal("d");
+        expect(scope.implicit.left[0].from.type).to.equal("for");
+        expect(scope.implicit.left[1].identifier.name).to.equal("array");
         expect(scope.implicit.left[1].from.type).to.equal("for");
 
         scope = scopeManager.scopes[2];
-        expect(scope.type).to.equal("TDZ");
-        expect(scope.variables).to.have.length(3);
-        expect(scope.variables[0].name).to.equal("a");
-        expect(scope.variables[1].name).to.equal("b");
-        expect(scope.variables[2].name).to.equal("c");
-        expect(scope.references).to.have.length(1);
-        expect(scope.references[0].identifier.name).to.equal("array");
-        expect(scope.references[0].isWrite()).to.be.false;
-
-        scope = scopeManager.scopes[3];
         expect(scope.type).to.equal("for");
         expect(scope.variables).to.have.length(3);
         expect(scope.variables[0].name).to.equal("a");
         expect(scope.variables[1].name).to.equal("b");
         expect(scope.variables[2].name).to.equal("c");
-        expect(scope.references).to.have.length(5);
+        expect(scope.references).to.have.length(6);
         expect(scope.references[0].identifier.name).to.equal("c");
         expect(scope.references[0].isWrite()).to.be.true;
         expect(scope.references[0].writeExpr.name).to.equal("d");
@@ -235,6 +218,9 @@ describe("ES6 destructuring assignments", () => {
         expect(scope.references[4].writeExpr.name).to.equal("array");
         expect(scope.references[4].partial).to.be.true;
         expect(scope.references[4].resolved).to.equal(scope.variables[2]);
+        expect(scope.references[5].identifier.name).to.equal("array");
+        expect(scope.references[5].isWrite()).to.be.false;
+        expect(scope.references[5].resolved).to.be.null;
     });
 
     it("Pattern with nested default values in var in ForInStatement", () => {
@@ -313,7 +299,7 @@ describe("ES6 destructuring assignments", () => {
 
         const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-        expect(scopeManager.scopes).to.have.length(4);  // [global, function, TDZ, for]
+        expect(scopeManager.scopes).to.have.length(3);  // [global, function, for]
 
         let scope = scopeManager.scopes[0];
 
@@ -321,30 +307,20 @@ describe("ES6 destructuring assignments", () => {
         expect(scope.variables).to.have.length(0);
         expect(scope.references).to.have.length(0);
         expect(scope.implicit.left).to.have.length(3);
-        expect(scope.implicit.left[0].identifier.name).to.equal("array");
-        expect(scope.implicit.left[0].from.type).to.equal("TDZ");
-        expect(scope.implicit.left[1].identifier.name).to.equal("d");
+        expect(scope.implicit.left[0].identifier.name).to.equal("d");
+        expect(scope.implicit.left[0].from.type).to.equal("for");
+        expect(scope.implicit.left[1].identifier.name).to.equal("e");
         expect(scope.implicit.left[1].from.type).to.equal("for");
-        expect(scope.implicit.left[2].identifier.name).to.equal("e");
+        expect(scope.implicit.left[2].identifier.name).to.equal("array");
         expect(scope.implicit.left[2].from.type).to.equal("for");
 
         scope = scopeManager.scopes[2];
-        expect(scope.type).to.equal("TDZ");
-        expect(scope.variables).to.have.length(3);
-        expect(scope.variables[0].name).to.equal("a");
-        expect(scope.variables[1].name).to.equal("b");
-        expect(scope.variables[2].name).to.equal("c");
-        expect(scope.references).to.have.length(1);
-        expect(scope.references[0].identifier.name).to.equal("array");
-        expect(scope.references[0].isWrite()).to.be.false;
-
-        scope = scopeManager.scopes[3];
         expect(scope.type).to.equal("for");
         expect(scope.variables).to.have.length(3);
         expect(scope.variables[0].name).to.equal("a");
         expect(scope.variables[1].name).to.equal("b");
         expect(scope.variables[2].name).to.equal("c");
-        expect(scope.references).to.have.length(8);
+        expect(scope.references).to.have.length(9);
         expect(scope.references[0].identifier.name).to.equal("b");
         expect(scope.references[0].isWrite()).to.be.true;
         expect(scope.references[0].writeExpr.name).to.equal("e");
@@ -379,6 +355,9 @@ describe("ES6 destructuring assignments", () => {
         expect(scope.references[7].writeExpr.name).to.equal("array");
         expect(scope.references[7].partial).to.be.true;
         expect(scope.references[7].resolved).to.equal(scope.variables[2]);
+        expect(scope.references[8].identifier.name).to.equal("array");
+        expect(scope.references[8].isWrite()).to.be.false;
+        expect(scope.references[8].resolved).to.be.null;
     });
 
     it("Pattern with default values in var in ForInStatement (separate declarations)", () => {

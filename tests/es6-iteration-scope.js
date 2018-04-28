@@ -41,7 +41,7 @@ describe("ES6 iteration scope", () => {
 
         const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-        expect(scopeManager.scopes).to.have.length(5);
+        expect(scopeManager.scopes).to.have.length(4);
 
         let scope = scopeManager.scopes[0];
 
@@ -57,25 +57,18 @@ describe("ES6 iteration scope", () => {
         expect(scope.references[0].identifier.name).to.be.equal("i");
         expect(scope.references[0].resolved).to.be.equal(scope.variables[1]);
 
-        let iterScope = scope = scopeManager.scopes[2];
+        const iterScope = scope = scopeManager.scopes[2];
 
-        expect(scope.type).to.be.equal("TDZ");
-        expect(scope.variables).to.have.length(1);
-        expect(scope.variables[0].name).to.be.equal("i");
-        expect(scope.variables[0].defs[0].type).to.be.equal("TDZ");
-        expect(scope.references).to.have.length(1);
-        expect(scope.references[0].identifier.name).to.be.equal("i");
-        expect(scope.references[0].resolved).to.be.equal(scope.variables[0]);
-
-        iterScope = scope = scopeManager.scopes[3];
         expect(scope.type).to.be.equal("for");
         expect(scope.variables).to.have.length(1);
         expect(scope.variables[0].name).to.be.equal("i");
-        expect(scope.references).to.have.length(1);
+        expect(scope.references).to.have.length(2);
         expect(scope.references[0].identifier.name).to.be.equal("i");
         expect(scope.references[0].resolved).to.be.equal(scope.variables[0]);
+        expect(scope.references[1].identifier.name).to.be.equal("i");
+        expect(scope.references[1].resolved).to.be.equal(scope.variables[0]);
 
-        scope = scopeManager.scopes[4];
+        scope = scopeManager.scopes[3];
         expect(scope.type).to.be.equal("block");
         expect(scope.variables).to.have.length(0);
         expect(scope.references).to.have.length(2);
@@ -97,7 +90,7 @@ describe("ES6 iteration scope", () => {
 
         const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-        expect(scopeManager.scopes).to.have.length(5);
+        expect(scopeManager.scopes).to.have.length(4);
 
         let scope = scopeManager.scopes[0];
 
@@ -113,35 +106,24 @@ describe("ES6 iteration scope", () => {
         expect(scope.references[0].identifier.name).to.be.equal("i");
         expect(scope.references[0].resolved).to.be.equal(scope.variables[1]);
 
-        let iterScope = scope = scopeManager.scopes[2];
+        const iterScope = scope = scopeManager.scopes[2];
 
-        expect(scope.type).to.be.equal("TDZ");
-        expect(scope.variables).to.have.length(3);
-        expect(scope.variables[0].name).to.be.equal("i");
-        expect(scope.variables[0].defs[0].type).to.be.equal("TDZ");
-        expect(scope.variables[1].name).to.be.equal("j");
-        expect(scope.variables[1].defs[0].type).to.be.equal("TDZ");
-        expect(scope.variables[2].name).to.be.equal("k");
-        expect(scope.variables[2].defs[0].type).to.be.equal("TDZ");
-        expect(scope.references).to.have.length(1);
-        expect(scope.references[0].identifier.name).to.be.equal("i");
-        expect(scope.references[0].resolved).to.be.equal(scope.variables[0]);
-
-        iterScope = scope = scopeManager.scopes[3];
         expect(scope.type).to.be.equal("for");
         expect(scope.variables).to.have.length(3);
         expect(scope.variables[0].name).to.be.equal("i");
         expect(scope.variables[1].name).to.be.equal("j");
         expect(scope.variables[2].name).to.be.equal("k");
-        expect(scope.references).to.have.length(3);
+        expect(scope.references).to.have.length(4);
         expect(scope.references[0].identifier.name).to.be.equal("i");
         expect(scope.references[0].resolved).to.be.equal(scope.variables[0]);
         expect(scope.references[1].identifier.name).to.be.equal("j");
         expect(scope.references[1].resolved).to.be.equal(scope.variables[1]);
         expect(scope.references[2].identifier.name).to.be.equal("k");
         expect(scope.references[2].resolved).to.be.equal(scope.variables[2]);
+        expect(scope.references[3].identifier.name).to.be.equal("i");
+        expect(scope.references[3].resolved).to.be.equal(scope.variables[0]);
 
-        scope = scopeManager.scopes[4];
+        scope = scopeManager.scopes[3];
         expect(scope.type).to.be.equal("block");
         expect(scope.variables).to.have.length(0);
         expect(scope.references).to.have.length(2);
