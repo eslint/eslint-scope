@@ -19,7 +19,8 @@
     "ci-release": "eslint-ci-release",
     "gh-release": "eslint-gh-release",
     "alpharelease": "eslint-prerelease alpha",
-    "betarelease": "eslint-prerelease beta"
+    "betarelease": "eslint-prerelease beta",
+    "rcrelease": "eslint-prerelease rc"
   },
   "files": [
     "LICENSE",
