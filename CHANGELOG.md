@@ -1,3 +1,8 @@
+v4.0.0-rc.0 - June 9, 2018
+
+* 3b919b8 Build: Adding rc release script to package.json (#38) (Kevin Partington)
+* 137732a Chore: avoid creating package-lock.json files (#37) (Teddy Katz)
+
 v4.0.0-alpha.0 - April 27, 2018
 
 * 7cc3769 Upgrade: eslint-release ^0.11.1 (#36) (Teddy Katz)
