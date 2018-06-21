@@ -1,3 +1,7 @@
+v4.0.0 - June 21, 2018
+
+
+
 v4.0.0-rc.0 - June 9, 2018
 
 * 3b919b8 Build: Adding rc release script to package.json (#38) (Kevin Partington)
