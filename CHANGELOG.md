@@ -1,3 +1,9 @@
+v4.0.1 - March 1, 2019
+
+* [`2533966`](https://github.com/eslint/eslint-scope/commit/2533966faf317df5a3847fab937ba462c16808b8) Fix: Arrow function scope strictness (fixes #49) (#50) (futpib)
+* [`0cbeea5`](https://github.com/eslint/eslint-scope/commit/0cbeea51dfb66ab88ea34b0e3b4ad5e6cc210f2f) Chore: add supported Node.js versions to CI (#47) (Kai Cataldo)
+* [`b423057`](https://github.com/eslint/eslint-scope/commit/b42305760638b8edf4667acf1445e450869bd983) Upgrade: eslint-release@1.0.0 (#46) (Teddy Katz)
+
 v4.0.0 - June 21, 2018
 
 
