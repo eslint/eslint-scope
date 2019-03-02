@@ -137,6 +137,21 @@ describe("ES6 arrow function expression", () => {
         expect(scope.isStrict).to.be.true;
         expect(scope.variables).to.have.length(0);
     });
+
+    it("works with no body", () => {
+        const ast = espree("var arrow = a => a;");
+
+        const scopeManager = analyze(ast, { ecmaVersion: 6 });
+
+        expect(scopeManager.scopes).to.have.length(2);
+
+        const scope = scopeManager.scopes[1];
+
+        expect(scope.type).to.be.equal("function");
+        expect(scope.block.type).to.be.equal("ArrowFunctionExpression");
+        expect(scope.isStrict).to.be.false;
+        expect(scope.variables).to.have.length(1);
+    });
 });
 
 // vim: set sw=4 ts=4 et tw=80 :
