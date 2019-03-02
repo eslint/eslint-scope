@@ -1,3 +1,7 @@
+v4.0.2 - March 1, 2019
+
+* [`c925600`](https://github.com/eslint/eslint-scope/commit/c925600a684ae0f71b96f85339437a43b4d50d99) Revert "Fix: Arrow function scope strictness (fixes #49) (#50)" (#51) (Teddy Katz)
+
 v4.0.1 - March 1, 2019
 
 * [`2533966`](https://github.com/eslint/eslint-scope/commit/2533966faf317df5a3847fab937ba462c16808b8) Fix: Arrow function scope strictness (fixes #49) (#50) (futpib)
