@@ -46,11 +46,11 @@ describe("ES6 default parameters:", () => {
 
                 const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-                expect(scopeManager.scopes).to.have.length(2);  // [global, foo]
+                expect(scopeManager.scopes).to.have.length(2); // [global, foo]
 
                 const scope = scopeManager.scopes[1];
 
-                expect(scope.variables).to.have.length(numVars);  // [arguments?, a, b]
+                expect(scope.variables).to.have.length(numVars); // [arguments?, a, b]
                 expect(scope.references).to.have.length(1);
 
                 const reference = scope.references[0];
@@ -90,12 +90,12 @@ describe("ES6 default parameters:", () => {
 
                 const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-                expect(scopeManager.scopes).to.have.length(2);  // [global, foo]
+                expect(scopeManager.scopes).to.have.length(2); // [global, foo]
 
                 const scope = scopeManager.scopes[1];
 
-                expect(scope.variables).to.have.length(numVars);  // [arguments?, b]
-                expect(scope.references).to.have.length(2);  // [b, a]
+                expect(scope.variables).to.have.length(numVars); // [arguments?, b]
+                expect(scope.references).to.have.length(2); // [b, a]
 
                 const reference = scope.references[1];
 
@@ -134,12 +134,12 @@ describe("ES6 default parameters:", () => {
 
                 const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-                expect(scopeManager.scopes).to.have.length(2);  // [global, foo]
+                expect(scopeManager.scopes).to.have.length(2); // [global, foo]
 
                 const scope = scopeManager.scopes[1];
 
-                expect(scope.variables).to.have.length(numVars);  // [arguments?, b]
-                expect(scope.references).to.have.length(2);  // [b, a]
+                expect(scope.variables).to.have.length(numVars); // [arguments?, b]
+                expect(scope.references).to.have.length(2); // [b, a]
 
                 const reference = scope.references[1];
 
@@ -178,12 +178,12 @@ describe("ES6 default parameters:", () => {
 
                 const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-                expect(scopeManager.scopes).to.have.length(2);  // [global, foo]
+                expect(scopeManager.scopes).to.have.length(2); // [global, foo]
 
                 const scope = scopeManager.scopes[1];
 
-                expect(scope.variables).to.have.length(numVars);  // [arguments?, b]
-                expect(scope.references).to.have.length(2);  // [b, a]
+                expect(scope.variables).to.have.length(numVars); // [arguments?, b]
+                expect(scope.references).to.have.length(2); // [b, a]
 
                 const reference = scope.references[1];
 
@@ -221,12 +221,12 @@ describe("ES6 default parameters:", () => {
 
                 const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-                expect(scopeManager.scopes).to.have.length(3);  // [global, foo, anonymous]
+                expect(scopeManager.scopes).to.have.length(3); // [global, foo, anonymous]
 
                 const scope = scopeManager.scopes[2];
 
-                expect(scope.variables).to.have.length(1);  // [arguments]
-                expect(scope.references).to.have.length(1);  // [a]
+                expect(scope.variables).to.have.length(1); // [arguments]
+                expect(scope.references).to.have.length(1); // [a]
 
                 const reference = scope.references[0];
 
@@ -265,12 +265,12 @@ describe("ES6 default parameters:", () => {
 
                 const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-                expect(scopeManager.scopes).to.have.length(2);  // [global, foo]
+                expect(scopeManager.scopes).to.have.length(2); // [global, foo]
 
                 const scope = scopeManager.scopes[1];
 
-                expect(scope.variables).to.have.length(numVars);  // [arguments?, b, a]
-                expect(scope.references).to.have.length(2);  // [b, a]
+                expect(scope.variables).to.have.length(numVars); // [arguments?, b, a]
+                expect(scope.references).to.have.length(2); // [b, a]
 
                 const reference = scope.references[1];
 
@@ -309,12 +309,12 @@ describe("ES6 default parameters:", () => {
 
                 const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-                expect(scopeManager.scopes).to.have.length(2);  // [global, foo]
+                expect(scopeManager.scopes).to.have.length(2); // [global, foo]
 
                 const scope = scopeManager.scopes[1];
 
-                expect(scope.variables).to.have.length(numVars);  // [arguments?, b, a]
-                expect(scope.references).to.have.length(2);  // [b, a]
+                expect(scope.variables).to.have.length(numVars); // [arguments?, b, a]
+                expect(scope.references).to.have.length(2); // [b, a]
 
                 const reference = scope.references[1];
 
@@ -352,11 +352,11 @@ describe("ES6 default parameters:", () => {
 
                 const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-                expect(scopeManager.scopes).to.have.length(3);  // [global, foo, anonymous function]
+                expect(scopeManager.scopes).to.have.length(3); // [global, foo, anonymous function]
 
                 const scope = scopeManager.scopes[2];
 
-                expect(scope.references).to.have.length(1);  // [a]
+                expect(scope.references).to.have.length(1); // [a]
 
                 const reference = scope.references[0];
 

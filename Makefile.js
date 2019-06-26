@@ -84,8 +84,6 @@ target.test = function() {
     let errors = 0;
     const lastReturn = exec(`${ISTANBUL} cover ${MOCHA} -- -R progress -c ${TEST_FILES}`);
 
-
-
     if (lastReturn.code !== 0) {
         errors++;
     }
@@ -131,8 +129,7 @@ target.checkLicenses = function() {
             impermissible.forEach(dependency => {
                 console.error("%s license for %s is impermissible.",
                     dependency.licenses,
-                    dependency.name
-                );
+                    dependency.name);
             });
             exit(1);
         }

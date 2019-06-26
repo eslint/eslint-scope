@@ -11,7 +11,7 @@
 //------------------------------------------------------------------------------
 
 const expect = require("chai").expect,
-    parse = require("typescript-eslint-parser").parse,
+    parse = require("@typescript-eslint/parser").parse,
     analyze = require("..").analyze;
 
 //------------------------------------------------------------------------------
@@ -31,39 +31,22 @@ describe("typescript", () => {
 
             const scopeManager = analyze(ast);
 
-            expect(scopeManager.scopes).to.have.length(4);
+            expect(scopeManager.scopes).to.have.length(2);
 
             const globalScope = scopeManager.scopes[0];
 
             expect(globalScope.type).to.be.equal("global");
             expect(globalScope.variables).to.have.length(1);
-            expect(globalScope.references).to.have.length(0);
+            expect(globalScope.references).to.have.length(4);
             expect(globalScope.isArgumentsMaterialized()).to.be.true;
 
-            // Function scopes
-            let scope = scopeManager.scopes[1];
+            const scope = scopeManager.scopes[1];
 
-            expect(scope.type).to.be.equal("function");
-            expect(scope.variables).to.have.length(2);
-            expect(scope.variables[0].name).to.be.equal("arguments");
-            expect(scope.isArgumentsMaterialized()).to.be.false;
-            expect(scope.references).to.have.length(0);
-
-            scope = scopeManager.scopes[2];
-            expect(scope.type).to.be.equal("function");
-            expect(scope.variables).to.have.length(2);
-            expect(scope.variables[0].name).to.be.equal("arguments");
-            expect(scope.isArgumentsMaterialized()).to.be.false;
-            expect(scope.references).to.have.length(0);
-
-            scope = scopeManager.scopes[3];
             expect(scope.type).to.be.equal("function");
             expect(scope.variables).to.have.length(2);
             expect(scope.variables[0].name).to.be.equal("arguments");
             expect(scope.isArgumentsMaterialized()).to.be.false;
             expect(scope.references).to.have.length(1);
-
-
         });
     });
 });
