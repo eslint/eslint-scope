@@ -33,9 +33,9 @@
   "devDependencies": {
     "@typescript-eslint/parser": "^1.11.0",
     "chai": "^4.2.0",
-    "eslint": "^6.0.1",
+    "eslint": "^5.16.0",
     "eslint-config-eslint": "^5.0.1",
-    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-node": "^8.0.1",
     "eslint-release": "^1.0.0",
     "espree": "^6.0.0",
     "istanbul": "^0.4.5",
