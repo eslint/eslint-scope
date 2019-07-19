@@ -107,8 +107,7 @@ describe("impliedStrict option", () => {
     });
 
     it("omits a module global scope when ensuring all user scopes are strict", () => {
-        const ast = espree(`
-            function foo() {}`);
+        const ast = espree("function foo() {}");
 
         const scopeManager = analyze(ast, { ecmaVersion: 6, impliedStrict: true, sourceType: "module" });
 
