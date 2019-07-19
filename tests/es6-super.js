@@ -50,6 +50,7 @@ describe("ES6 super", () => {
         expect(scope.variables).to.have.length(1);
         expect(scope.variables[0].name).to.be.equal("Foo");
         expect(scope.references).to.have.length(1);
+        expect(scope.references[0].identifier.name).to.be.equal("Bar");
 
         scope = scopeManager.scopes[1];
         expect(scope.type).to.be.equal("class");
