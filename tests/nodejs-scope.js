@@ -56,9 +56,7 @@ describe("nodejsScope option", () => {
     });
 
     it("creates a function scope following the global scope immediately and creates module scope", () => {
-        const ast = espree(`
-            import {x as v} from "mod";`
-        );
+        const ast = espree("import {x as v} from 'mod';");
 
         const scopeManager = analyze(ast, { ecmaVersion: 6, nodejsScope: true, sourceType: "module" });
 

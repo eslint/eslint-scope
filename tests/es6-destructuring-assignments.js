@@ -81,7 +81,7 @@ describe("ES6 destructuring assignments", () => {
 
         const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-        expect(scopeManager.scopes).to.have.length(3);  // [global, function, for]
+        expect(scopeManager.scopes).to.have.length(3); // [global, function, for]
 
         let scope = scopeManager.scopes[0];
 
@@ -176,7 +176,7 @@ describe("ES6 destructuring assignments", () => {
 
         const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-        expect(scopeManager.scopes).to.have.length(3);  // [global, function, for]
+        expect(scopeManager.scopes).to.have.length(3); // [global, function, for]
 
         let scope = scopeManager.scopes[0];
 
@@ -299,7 +299,7 @@ describe("ES6 destructuring assignments", () => {
 
         const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-        expect(scopeManager.scopes).to.have.length(3);  // [global, function, for]
+        expect(scopeManager.scopes).to.have.length(3); // [global, function, for]
 
         let scope = scopeManager.scopes[0];
 
@@ -440,15 +440,15 @@ describe("ES6 destructuring assignments", () => {
         expect(scope.variables[0].name).to.equal("arguments");
         expect(scope.variables[1].name).to.equal("obj");
         expect(scope.references).to.have.length(5);
-        expect(scope.references[0].identifier.name).to.equal("obj");  // obj.a
+        expect(scope.references[0].identifier.name).to.equal("obj"); // obj.a
         expect(scope.references[0].isWrite()).to.be.false;
         expect(scope.references[0].isRead()).to.be.true;
         expect(scope.references[0].resolved).to.equal(scope.variables[1]);
-        expect(scope.references[1].identifier.name).to.equal("obj");  // obj.b
+        expect(scope.references[1].identifier.name).to.equal("obj"); // obj.b
         expect(scope.references[1].isWrite()).to.be.false;
         expect(scope.references[1].isRead()).to.be.true;
         expect(scope.references[1].resolved).to.equal(scope.variables[1]);
-        expect(scope.references[2].identifier.name).to.equal("obj");  // obj.c
+        expect(scope.references[2].identifier.name).to.equal("obj"); // obj.c
         expect(scope.references[2].isWrite()).to.be.false;
         expect(scope.references[2].isRead()).to.be.true;
         expect(scope.references[2].resolved).to.equal(scope.variables[1]);

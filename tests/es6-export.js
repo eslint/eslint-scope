@@ -29,7 +29,7 @@ const analyze = require("..").analyze;
 describe("export declaration", () => {
 
     // http://people.mozilla.org/~jorendorff/es6-draft.html#sec-static-and-runtme-semantics-module-records
-    it("should create vairable bindings", () => {
+    it("should create variable bindings", () => {
         const ast = espree("export var v;");
 
         const scopeManager = analyze(ast, { ecmaVersion: 6, sourceType: "module" });
@@ -122,7 +122,7 @@ describe("export declaration", () => {
     });
 
     it("should refer exported references#1", () => {
-        const ast = espree("export {x};");
+        const ast = espree("const x = 1; export {x};");
 
         const scopeManager = analyze(ast, { ecmaVersion: 6, sourceType: "module" });
 
@@ -136,13 +136,14 @@ describe("export declaration", () => {
         const scope = scopeManager.scopes[1];
 
         expect(scope.type).to.be.equal("module");
-        expect(scope.variables).to.have.length(0);
-        expect(scope.references).to.have.length(1);
+        expect(scope.variables).to.have.length(1);
+        expect(scope.references).to.have.length(2);
         expect(scope.references[0].identifier.name).to.be.equal("x");
+        expect(scope.references[1].identifier.name).to.be.equal("x");
     });
 
     it("should refer exported references#2", () => {
-        const ast = espree("export {v as x};");
+        const ast = espree("const v = 1; export {v as x};");
 
         const scopeManager = analyze(ast, { ecmaVersion: 6, sourceType: "module" });
 
@@ -156,9 +157,10 @@ describe("export declaration", () => {
         const scope = scopeManager.scopes[1];
 
         expect(scope.type).to.be.equal("module");
-        expect(scope.variables).to.have.length(0);
-        expect(scope.references).to.have.length(1);
+        expect(scope.variables).to.have.length(1);
+        expect(scope.references).to.have.length(2);
         expect(scope.references[0].identifier.name).to.be.equal("v");
+        expect(scope.references[1].identifier.name).to.be.equal("v");
     });
 
     it("should not refer exported references from other source#1", () => {

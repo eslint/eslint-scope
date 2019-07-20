@@ -29,7 +29,7 @@ const analyze = require("..").analyze;
 describe("ES6 super", () => {
     it("is not handled as reference", () => {
         const ast = espree(`
-            class Hello {
+            class Foo extends Bar {
                 constructor() {
                     super();
                 }
@@ -48,26 +48,27 @@ describe("ES6 super", () => {
 
         expect(scope.type).to.be.equal("global");
         expect(scope.variables).to.have.length(1);
-        expect(scope.variables[0].name).to.be.equal("Hello");
-        expect(scope.references).to.have.length(0);
+        expect(scope.variables[0].name).to.be.equal("Foo");
+        expect(scope.references).to.have.length(1);
+        expect(scope.references[0].identifier.name).to.be.equal("Bar");
 
         scope = scopeManager.scopes[1];
         expect(scope.type).to.be.equal("class");
         expect(scope.variables).to.have.length(1);
-        expect(scope.variables[0].name).to.be.equal("Hello");
+        expect(scope.variables[0].name).to.be.equal("Foo");
         expect(scope.references).to.have.length(0);
 
         scope = scopeManager.scopes[2];
         expect(scope.type).to.be.equal("function");
         expect(scope.variables).to.have.length(1);
         expect(scope.variables[0].name).to.be.equal("arguments");
-        expect(scope.references).to.have.length(0);  // super is specially handled like `this`.
+        expect(scope.references).to.have.length(0); // super is specially handled like `this`.
 
         scope = scopeManager.scopes[3];
         expect(scope.type).to.be.equal("function");
         expect(scope.variables).to.have.length(1);
         expect(scope.variables[0].name).to.be.equal("arguments");
-        expect(scope.references).to.have.length(0);  // super is specially handled like `this`.
+        expect(scope.references).to.have.length(0); // super is specially handled like `this`.
     });
 });
 

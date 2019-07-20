@@ -207,8 +207,7 @@ describe("ScopeManager.prototype.getDeclaredVariables", () => {
         const ast = espree(`
             import "aaa";
             import * as a from "bbb";
-            import b, {c, x as d} from "ccc";`
-        );
+            import b, {c, x as d} from "ccc";`);
 
         verify(ast, "ImportDeclaration", [
             [],
@@ -222,8 +221,7 @@ describe("ScopeManager.prototype.getDeclaredVariables", () => {
         const ast = espree(`
             import "aaa";
             import * as a from "bbb";
-            import b, {c, x as d} from "ccc";`
-        );
+            import b, {c, x as d} from "ccc";`);
 
         verify(ast, "ImportSpecifier", [
             ["c"],
@@ -236,8 +234,7 @@ describe("ScopeManager.prototype.getDeclaredVariables", () => {
         const ast = espree(`
             import "aaa";
             import * as a from "bbb";
-            import b, {c, x as d} from "ccc";`
-        );
+            import b, {c, x as d} from "ccc";`);
 
         verify(ast, "ImportDefaultSpecifier", [
             ["b"]
@@ -249,8 +246,7 @@ describe("ScopeManager.prototype.getDeclaredVariables", () => {
         const ast = espree(`
             import "aaa";
             import * as a from "bbb";
-            import b, {c, x as d} from "ccc";`
-        );
+            import b, {c, x as d} from "ccc";`);
 
         verify(ast, "ImportNamespaceSpecifier", [
             ["a"]
