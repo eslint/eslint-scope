@@ -79,8 +79,6 @@ target.lint = function() {
 };
 
 target.test = function() {
-    target.lint();
-
     let errors = 0;
     const lastReturn = exec(`${ISTANBUL} cover ${MOCHA} -- -R progress -c ${TEST_FILES}`);
 
