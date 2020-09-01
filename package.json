@@ -27,7 +27,7 @@
     "lib"
   ],
   "dependencies": {
-    "esrecurse": "^4.1.0",
+    "esrecurse": "^4.3.0",
     "estraverse": "^4.1.1"
   },
   "devDependencies": {
