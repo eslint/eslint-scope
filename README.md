@@ -17,7 +17,7 @@ var eslintScope = require('eslint-scope');
 var espree = require('espree');
 var estraverse = require('estraverse');
 
-var ast = espree.parse(code);
+var ast = espree.parse(code, { range: true });
 var scopeManager = eslintScope.analyze(ast);
 
 var currentScope = scopeManager.acquire(ast);   // global scope
