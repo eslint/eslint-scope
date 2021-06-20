@@ -25,9 +25,7 @@
 
 const espree = require("espree");
 
-module.exports = function(code, sourceType) {
-    sourceType = sourceType || "module";
-
+module.exports = function(code, sourceType = "module") {
     return espree.parse(code, {
         range: true,
         ecmaVersion: 7,

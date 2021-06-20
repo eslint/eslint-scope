@@ -23,7 +23,7 @@ const checker = require("npm-license");
 //------------------------------------------------------------------------------
 
 const OPEN_SOURCE_LICENSES = [
-    /MIT/, /BSD/, /Apache/, /ISC/, /WTF/, /Public Domain/
+    /MIT/u, /BSD/u, /Apache/u, /ISC/u, /WTF/u, /Public Domain/u
 ];
 
 //------------------------------------------------------------------------------
