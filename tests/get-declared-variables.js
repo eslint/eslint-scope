@@ -20,12 +20,11 @@
 //  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 //  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 //  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-"use strict";
 
-const expect = require("chai").expect;
-const visit = require("esrecurse").visit;
-const espree = require("./util/espree");
-const analyze = require("..").analyze;
+import { expect } from "chai";
+import { visit } from "esrecurse";
+import espree from "./util/espree.js";
+import { analyze } from "../lib/index.js";
 
 describe("ScopeManager.prototype.getDeclaredVariables", () => {
     /* eslint-disable jsdoc/require-jsdoc */

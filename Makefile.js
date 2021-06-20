@@ -6,17 +6,20 @@
  */
 /* global echo, exec, exit, set, target */
 
-"use strict";
-
 /* eslint no-console: 0*/
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-require("shelljs/make");
-set("+e");
+import path from "path";
+import { fileURLToPath } from "url";
 
-const checker = require("npm-license");
+import "shelljs/make.js";
+import checker from "npm-license";
+
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+
+set("+e");
 
 //------------------------------------------------------------------------------
 // Settings
@@ -31,12 +34,15 @@ const OPEN_SOURCE_LICENSES = [
 //------------------------------------------------------------------------------
 
 const NODE = "node",
-    NODE_MODULES = "./node_modules/",
+    NODE_MODULES = "./node_modules",
 
     // Utilities - intentional extra space at the end of each string
-    MOCHA = `${NODE_MODULES}mocha/bin/_mocha `,
+    MOCHA = `${NODE_MODULES}/mocha/bin/_mocha `,
     ESLINT = `${NODE} ${NODE_MODULES}/eslint/bin/eslint `,
-    ISTANBUL = `${NODE} ${NODE_MODULES}/istanbul/lib/cli.js `,
+
+    // If switching back to Istanbul when may be working with ESM
+    // ISTANBUL = `${NODE} ${NODE_MODULES}/istanbul/lib/cli.js `,
+    C8 = `${NODE} ${NODE_MODULES}/c8/bin/c8.js`,
 
     // Files
     MAKEFILE = "./Makefile.js",
@@ -80,7 +86,7 @@ target.lint = function() {
 
 target.test = function() {
     let errors = 0;
-    const lastReturn = exec(`${ISTANBUL} cover ${MOCHA} -- -R progress -c ${TEST_FILES}`);
+    const lastReturn = exec(`${C8} ${MOCHA} -- -R progress -c ${TEST_FILES}`);
 
     if (lastReturn.code !== 0) {
         errors++;
@@ -116,7 +122,7 @@ target.checkLicenses = function() {
     echo("Validating licenses");
 
     checker.init({
-        start: __dirname
+        start: dirname
     }, deps => {
         const impermissible = Object.keys(deps).map(dependency => ({
             name: dependency,

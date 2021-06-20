@@ -1,9 +1,9 @@
-"use strict";
+import assert from "assert";
+import espree from "espree";
+import evk from "eslint-visitor-keys";
+import { analyze } from "../lib/index.js";
 
-const assert = require("assert");
-const espree = require("espree");
-const { KEYS } = require("eslint-visitor-keys");
-const { analyze } = require("../lib/index");
+const { KEYS } = evk;
 
 describe("export * as ns from 'source'", () => {
     let scopes;

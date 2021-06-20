@@ -1,7 +1,5 @@
-"use strict";
-
-const expect = require("chai").expect;
-const analyze = require("..").analyze;
+import { expect } from "chai";
+import { analyze } from "../lib/index.js";
 
 describe("object expression", () => {
     it("doesn't require property type", () => {

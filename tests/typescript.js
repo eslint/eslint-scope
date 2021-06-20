@@ -2,7 +2,6 @@
  * @fileoverview Typescript scope tests
  * @author Reyad Attiyat
  */
-"use strict";
 
 /* eslint-disable no-unused-expressions */
 
@@ -10,9 +9,9 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const expect = require("chai").expect,
-    parse = require("@typescript-eslint/parser").parse,
-    analyze = require("..").analyze;
+import { expect } from "chai";
+import { parse } from "@typescript-eslint/parser";
+import { analyze } from "../lib/index.js";
 
 //------------------------------------------------------------------------------
 // Tests
@@ -27,7 +26,9 @@ describe("typescript", () => {
                 function foo(bar: string | number): string | number {
                     return bar;
                 }
-            `);
+            `, {
+                range: true
+            });
 
             const scopeManager = analyze(ast);
 
