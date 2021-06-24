@@ -12,7 +12,7 @@ module.exports = {
     },
     overrides: [
         {
-            files: ".eslintrc.js",
+            files: ".eslintrc.cjs",
             extends: ["eslint", "plugin:node/recommended-script"]
         },
         {
@@ -20,6 +20,13 @@ module.exports = {
             env: {
                 mocha: true
             }
+        },
+        {
+            files: ["*.cjs"],
+            parserOptions: {
+                sourceType: "script"
+            }
         }
-    ]
+    ],
+    ignorePatterns: ["/dist", "/coverage"]
 };

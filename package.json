@@ -5,8 +5,11 @@
   "main": "./dist/eslint-scope.cjs",
   "type": "module",
   "exports": {
-    "import": "./lib/index.js",
-    "require": "./dist/eslint-scope.cjs"
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./dist/eslint-scope.cjs"
+    },
+    "./package.json": "./package.json"
   },
   "version": "5.1.1",
   "engines": {
@@ -31,7 +34,8 @@
   "files": [
     "LICENSE",
     "README.md",
-    "lib"
+    "lib",
+    "dist/eslint-visitor.keys.cjs"
   ],
   "dependencies": {
     "esrecurse": "^4.3.0",
