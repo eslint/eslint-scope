@@ -19,6 +19,8 @@ import checker from "npm-license";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// `shelljs/make.js` global command to unset any `set('-e')` (to exit upon
+//    first error)
 set("+e");
 
 //------------------------------------------------------------------------------
