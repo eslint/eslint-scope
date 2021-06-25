@@ -35,7 +35,7 @@
     "LICENSE",
     "README.md",
     "lib",
-    "dist/eslint-visitor.keys.cjs"
+    "dist/eslint-scope.cjs"
   ],
   "dependencies": {
     "esrecurse": "^4.3.0",
