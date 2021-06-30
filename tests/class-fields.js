@@ -1,3 +1,8 @@
+/**
+ * @fileoverview Tests for class fields syntax.
+ * @author Toru Nagashima
+ */
+
 "use strict";
 
 const assert = require("assert");
