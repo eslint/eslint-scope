@@ -221,4 +221,70 @@ describe("Class fields", () => {
             assert.strictEqual(fieldInitializerScope.variables.length, 0);
         });
     });
+    
+    describe("class C { #f = g; e = this.#f }", () => {
+        let scopes;
+
+        beforeEach(() => {
+            const ast = espree.parse("class C { #f = g; e = this.#f }", { ecmaVersion: 13 });
+            const manager = analyze(ast, { ecmaVersion: 13, childVistorKeys: KEYS });
+
+            scopes = manager.globalScope.childScopes;
+        });
+
+        it("should create a class scope.", () => {
+            assert.strictEqual(scopes.length, 1);
+            assert.strictEqual(scopes[0].type, "class");
+        });
+
+        it("The class scope has no references.", () => {
+            const classScope = scopes[0];
+
+            assert.strictEqual(classScope.references.length, 0);
+        });
+
+        it("The class scope has only the variable 'C'; it doesn't have the field names '#f' or 'e'.", () => {
+            const classScope = scopes[0];
+
+            assert.strictEqual(classScope.variables.length, 1);
+            assert.strictEqual(classScope.variables[0].name, "C");
+        });
+
+        it("The class scope has two function scopes.", () => {
+            const classScope = scopes[0];
+
+            assert.strictEqual(classScope.childScopes.length, 2);
+            assert.strictEqual(classScope.childScopes[0].type, "function");
+            assert.strictEqual(classScope.childScopes[1].type, "function");
+        });
+
+        it("The first function scope has only the reference 'g'.", () => {
+            const classScope = scopes[0];
+            const fieldInitializerScope = classScope.childScopes[0];
+
+            assert.strictEqual(fieldInitializerScope.references.length, 1);
+            assert.strictEqual(fieldInitializerScope.references[0].identifier.name, "g");
+        });
+
+        it("The first function scope has no variables.", () => {
+            const classScope = scopes[0];
+            const fieldInitializerScope = classScope.childScopes[0];
+
+            assert.strictEqual(fieldInitializerScope.variables.length, 0);
+        });
+
+        it("The second function scope has no references.", () => {
+            const classScope = scopes[0];
+            const fieldInitializerScope = classScope.childScopes[1];
+
+            assert.strictEqual(fieldInitializerScope.references.length, 0);
+        });
+
+        it("The second function scope has no variables.", () => {
+            const classScope = scopes[0];
+            const fieldInitializerScope = classScope.childScopes[1];
+
+            assert.strictEqual(fieldInitializerScope.variables.length, 0);
+        });
+    });
 });
