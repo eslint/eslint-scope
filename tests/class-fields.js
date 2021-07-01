@@ -54,6 +54,13 @@ describe("Class fields", () => {
             assert.strictEqual(fieldInitializerScope.block.name, "g");
         });
 
+        it("The class-field-initializer scope's variableScope is itself.", () => {
+            const classScope = scopes[0];
+            const fieldInitializerScope = classScope.childScopes[0];
+
+            assert.strictEqual(fieldInitializerScope.variableScope, fieldInitializerScope);
+        });
+
         it("The class-field-initializer scope has only the reference 'g'.", () => {
             const classScope = scopes[0];
             const fieldInitializerScope = classScope.childScopes[0];
