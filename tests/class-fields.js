@@ -221,7 +221,6 @@ describe("Class fields", () => {
             assert.strictEqual(fieldInitializerScope.variables.length, 0);
         });
     });
-    
     describe("class C { #f = g; e = this.#f }", () => {
         let scopes;
 
