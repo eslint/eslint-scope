@@ -39,14 +39,22 @@ describe("Class fields", () => {
             assert.strictEqual(classScope.variables[0].name, "C");
         });
 
-        it("The class scope has a function scope.", () => {
+        it("The class scope has a class-field-initializer scope.", () => {
             const classScope = scopes[0];
 
             assert.strictEqual(classScope.childScopes.length, 1);
-            assert.strictEqual(classScope.childScopes[0].type, "function");
+            assert.strictEqual(classScope.childScopes[0].type, "class-field-initializer");
         });
 
-        it("The function scope has only the reference 'g'.", () => {
+        it("The class-field-initializer scope's block is the node of the field initializer.", () => {
+            const classScope = scopes[0];
+            const fieldInitializerScope = classScope.childScopes[0];
+
+            assert.strictEqual(fieldInitializerScope.block.type, "Identifier");
+            assert.strictEqual(fieldInitializerScope.block.name, "g");
+        });
+
+        it("The class-field-initializer scope has only the reference 'g'.", () => {
             const classScope = scopes[0];
             const fieldInitializerScope = classScope.childScopes[0];
 
@@ -54,7 +62,7 @@ describe("Class fields", () => {
             assert.strictEqual(fieldInitializerScope.references[0].identifier.name, "g");
         });
 
-        it("The function scope has no variables.", () => {
+        it("The class-field-initializer scope has no variables.", () => {
             const classScope = scopes[0];
             const fieldInitializerScope = classScope.childScopes[0];
 
@@ -83,7 +91,7 @@ describe("Class fields", () => {
             assert.strictEqual(classScope.references.length, 0);
         });
 
-        it("The class scope has no child scopes; fields that don't have initializers don't create any function scopes.", () => {
+        it("The class scope has no child scopes; fields that don't have initializers don't create any class-field-initializer scopes.", () => {
             const classScope = scopes[0];
 
             assert.strictEqual(classScope.childScopes.length, 0);
@@ -125,14 +133,14 @@ describe("Class fields", () => {
             assert.strictEqual(classScope.variables[0].name, "C");
         });
 
-        it("The class scope has a function scope.", () => {
+        it("The class scope has a class-field-initializer scope.", () => {
             const classScope = scopes[0];
 
             assert.strictEqual(classScope.childScopes.length, 1);
-            assert.strictEqual(classScope.childScopes[0].type, "function");
+            assert.strictEqual(classScope.childScopes[0].type, "class-field-initializer");
         });
 
-        it("The function scope has only the reference 'g'.", () => {
+        it("The class-field-initializer scope has only the reference 'g'.", () => {
             const classScope = scopes[0];
             const fieldInitializerScope = classScope.childScopes[0];
 
@@ -140,7 +148,7 @@ describe("Class fields", () => {
             assert.strictEqual(fieldInitializerScope.references[0].identifier.name, "g");
         });
 
-        it("The function scope has no variables.", () => {
+        it("The class-field-initializer scope has no variables.", () => {
             const classScope = scopes[0];
             const fieldInitializerScope = classScope.childScopes[0];
 
@@ -170,7 +178,7 @@ describe("Class fields", () => {
             assert.strictEqual(classScope.references[0].identifier.name, "fname");
         });
 
-        it("The class scope has no child scopes; fields that don't have initializers don't create any function scopes.", () => {
+        it("The class scope has no child scopes; fields that don't have initializers don't create any class-field-initializer scopes.", () => {
             const classScope = scopes[0];
 
             assert.strictEqual(classScope.childScopes.length, 0);
@@ -199,14 +207,14 @@ describe("Class fields", () => {
             assert.strictEqual(classScope.references[0].identifier.name, "fname");
         });
 
-        it("The class scope has a function scope.", () => {
+        it("The class scope has a class-field-initializer scope.", () => {
             const classScope = scopes[0];
 
             assert.strictEqual(classScope.childScopes.length, 1);
-            assert.strictEqual(classScope.childScopes[0].type, "function");
+            assert.strictEqual(classScope.childScopes[0].type, "class-field-initializer");
         });
 
-        it("The function scope has the reference 'value'.", () => {
+        it("The class-field-initializer scope has the reference 'value'.", () => {
             const classScope = scopes[0];
             const fieldInitializerScope = classScope.childScopes[0];
 
@@ -214,13 +222,14 @@ describe("Class fields", () => {
             assert.strictEqual(fieldInitializerScope.references[0].identifier.name, "value");
         });
 
-        it("The function scope has no variables.", () => {
+        it("The class-field-initializer scope has no variables.", () => {
             const classScope = scopes[0];
             const fieldInitializerScope = classScope.childScopes[0];
 
             assert.strictEqual(fieldInitializerScope.variables.length, 0);
         });
     });
+
     describe("class C { #f = g; e = this.#f }", () => {
         let scopes;
 
@@ -249,15 +258,15 @@ describe("Class fields", () => {
             assert.strictEqual(classScope.variables[0].name, "C");
         });
 
-        it("The class scope has two function scopes.", () => {
+        it("The class scope has two class-field-initializer scopes.", () => {
             const classScope = scopes[0];
 
             assert.strictEqual(classScope.childScopes.length, 2);
-            assert.strictEqual(classScope.childScopes[0].type, "function");
-            assert.strictEqual(classScope.childScopes[1].type, "function");
+            assert.strictEqual(classScope.childScopes[0].type, "class-field-initializer");
+            assert.strictEqual(classScope.childScopes[1].type, "class-field-initializer");
         });
 
-        it("The first function scope has only the reference 'g'.", () => {
+        it("The first class-field-initializer scope has only the reference 'g'.", () => {
             const classScope = scopes[0];
             const fieldInitializerScope = classScope.childScopes[0];
 
@@ -265,21 +274,21 @@ describe("Class fields", () => {
             assert.strictEqual(fieldInitializerScope.references[0].identifier.name, "g");
         });
 
-        it("The first function scope has no variables.", () => {
+        it("The first class-field-initializer scope has no variables.", () => {
             const classScope = scopes[0];
             const fieldInitializerScope = classScope.childScopes[0];
 
             assert.strictEqual(fieldInitializerScope.variables.length, 0);
         });
 
-        it("The second function scope has no references.", () => {
+        it("The second class-field-initializer scope has no references.", () => {
             const classScope = scopes[0];
             const fieldInitializerScope = classScope.childScopes[1];
 
             assert.strictEqual(fieldInitializerScope.references.length, 0);
         });
 
-        it("The second function scope has no variables.", () => {
+        it("The second class-field-initializer scope has no variables.", () => {
             const classScope = scopes[0];
             const fieldInitializerScope = classScope.childScopes[1];
 
