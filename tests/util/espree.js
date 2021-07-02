@@ -22,7 +22,7 @@
   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import espree from "espree";
+import * as espree from "espree";
 
 /**
  * Parse into Espree AST.

@@ -1,9 +1,7 @@
 import assert from "assert";
-import espree from "espree";
-import evk from "eslint-visitor-keys";
+import * as espree from "espree";
+import { KEYS } from "eslint-visitor-keys";
 import { analyze } from "../lib/index.js";
-
-const { KEYS } = evk;
 
 describe("export * as ns from 'source'", () => {
     let scopes;
