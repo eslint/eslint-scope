@@ -13,7 +13,7 @@ npm i eslint-scope --save
 To use in an ESM file:
 
 ```js
-import eslintScope from 'eslint-scope';
+import * as eslintScope from 'eslint-scope';
 ```
 
 To use in a CommonJS file:
@@ -25,8 +25,8 @@ const eslintScope = require('eslint-scope');
 Example:
 
 ```js
-import eslintScope from 'eslint-scope';
-import espree from 'espree';
+import * as eslintScope from 'eslint-scope';
+import * as espree from 'espree';
 import estraverse from 'estraverse';
 
 const ast = espree.parse(code, { range: true });
