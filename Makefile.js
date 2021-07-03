@@ -49,7 +49,8 @@ const NODE = "node",
     // Files
     MAKEFILE = "./Makefile.js",
     JS_FILES = "lib/**/*.js",
-    TEST_FILES = "tests/*.js";
+    TEST_FILES = "tests/*.js",
+    CJS_TEST_FILES = "tests/*.cjs";
 
 //------------------------------------------------------------------------------
 // Tasks
@@ -81,6 +82,12 @@ target.lint = function() {
         errors++;
     }
 
+    echo("Validating CJS JavaScript test files");
+    lastReturn = exec(ESLINT + CJS_TEST_FILES);
+    if (lastReturn.code !== 0) {
+        errors++;
+    }
+
     if (errors) {
         exit(1);
     }
@@ -88,7 +95,13 @@ target.lint = function() {
 
 target.test = function() {
     let errors = 0;
-    const lastReturn = exec(`${C8} ${MOCHA} -- -R progress -c ${TEST_FILES}`);
+    let lastReturn = exec(`${MOCHA} -- -R progress -c ${CJS_TEST_FILES}`);
+
+    if (lastReturn.code !== 0) {
+        errors++;
+    }
+
+    lastReturn = exec(`${C8} ${MOCHA} -- -R progress -c ${TEST_FILES}`);
 
     if (lastReturn.code !== 0) {
         errors++;

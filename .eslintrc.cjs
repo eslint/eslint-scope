@@ -12,10 +12,6 @@ module.exports = {
     },
     overrides: [
         {
-            files: ".eslintrc.cjs",
-            extends: ["eslint", "plugin:node/recommended-script"]
-        },
-        {
             files: ["tests/**/*"],
             env: {
                 mocha: true
@@ -23,8 +19,10 @@ module.exports = {
         },
         {
             files: ["*.cjs"],
+            extends: ["eslint", "plugin:node/recommended-script"],
             parserOptions: {
-                sourceType: "script"
+                sourceType: "script",
+                ecmaVersion: "2020"
             }
         }
     ],
