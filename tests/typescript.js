@@ -10,8 +10,10 @@
 //------------------------------------------------------------------------------
 
 import { expect } from "chai";
-import { parse } from "@typescript-eslint/parser";
+import typescriptEslintParser from "@typescript-eslint/parser";
 import { analyze } from "../lib/index.js";
+
+const { parse } = typescriptEslintParser;
 
 //------------------------------------------------------------------------------
 // Tests

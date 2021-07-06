@@ -22,9 +22,11 @@
 //  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import { expect } from "chai";
-import { visit } from "esrecurse";
+import esrecurse from "esrecurse";
 import espree from "./util/espree.js";
 import { analyze } from "../lib/index.js";
+
+const { visit } = esrecurse;
 
 describe("ScopeManager.prototype.getDeclaredVariables", () => {
     /* eslint-disable jsdoc/require-jsdoc */
