@@ -42,7 +42,7 @@ estraverse.traverse(ast, {
             currentScope = scopeManager.acquire(node);  // get current function scope
         }
     },
-    leave (node, parent) {
+    leave(node, parent) {
         if (/Function/.test(node.type)) {
             currentScope = currentScope.upper;  // set to parent scope
         }
