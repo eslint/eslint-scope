@@ -21,8 +21,9 @@
   },
   "license": "BSD-2-Clause",
   "scripts": {
-    "prepare": "npm run build",
+    "prepare": "npm run update-version && npm run build",
     "build": "rollup -c",
+    "update-version": "node tools/update-version.js",
     "test": "node Makefile.js test",
     "lint": "node Makefile.js lint",
     "generate-release": "eslint-generate-release",
