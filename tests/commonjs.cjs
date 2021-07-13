@@ -35,22 +35,5 @@ describe("commonjs", () => {
         ].forEach(prop => {
             assert.strictEqual(typeof eslintScope[prop], "function");
         });
-
-        [
-            "BlockScope",
-            "CatchScope",
-            "ClassFieldInitializerScope",
-            "ClassScope",
-            "ForScope",
-            "FunctionExpressionNameScope",
-            "FunctionScope",
-            "GlobalScope",
-            "ModuleScope",
-            "SwitchScope",
-            "WithScope"
-        ].forEach(prop => {
-            assert.strictEqual(typeof eslintScope[prop], "function");
-            assert(Object.prototype.isPrototypeOf.call(eslintScope.Scope, eslintScope[prop]));
-        });
     });
 });
