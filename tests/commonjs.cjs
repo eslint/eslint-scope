@@ -28,7 +28,10 @@ describe("commonjs", () => {
 
         [
             "analyze",
+            "Definition",
+            "PatternVisitor",
             "Reference",
+            "Referencer",
             "Scope",
             "ScopeManager",
             "Variable"
