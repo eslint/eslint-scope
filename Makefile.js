@@ -95,7 +95,7 @@ target.lint = function() {
 
 target.test = function() {
     let errors = 0;
-    let lastReturn = exec(`${MOCHA} -- -R progress -c ${CJS_TEST_FILES}`);
+    let lastReturn = exec(`${NODE} ${MOCHA} -- -R progress -c ${CJS_TEST_FILES}`);
 
     if (lastReturn.code !== 0) {
         errors++;
