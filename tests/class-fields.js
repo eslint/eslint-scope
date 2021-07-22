@@ -3,12 +3,10 @@
  * @author Toru Nagashima
  */
 
-"use strict";
-
-const assert = require("assert");
-const espree = require("espree");
-const { KEYS } = require("eslint-visitor-keys");
-const { analyze } = require("../lib/index");
+import assert from "assert";
+import * as espree from "espree";
+import { KEYS } from "eslint-visitor-keys";
+import { analyze } from "../lib/index.js";
 
 describe("Class fields", () => {
     describe("class C { f = g }", () => {

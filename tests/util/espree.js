@@ -21,18 +21,21 @@
   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-"use strict";
 
-const espree = require("espree");
+import * as espree from "espree";
 
-module.exports = function(code, sourceType) {
-    sourceType = sourceType || "module";
-
+/**
+ * Parse into Espree AST.
+ * @param {string} code The code
+ * @param {"module"|"script"} [sourceType="module"] The source type
+ * @returns {Object} The parsed Espree AST
+ */
+export default function(code, sourceType = "module") {
     return espree.parse(code, {
         range: true,
         ecmaVersion: 7,
         sourceType
     });
-};
+}
 
 /* vim: set sw=4 ts=4 et tw=80 : */

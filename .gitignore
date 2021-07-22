@@ -8,3 +8,4 @@ npm-debug.log
 /.vscode
 .sublimelinterrc
 .eslint-release-info.json
+dist
