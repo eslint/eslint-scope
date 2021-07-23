@@ -1,3 +1,11 @@
+v6.0.0 - July 23, 2021
+
+* [`4ee1d80`](https://github.com/eslint/eslint-scope/commit/4ee1d80ce7dab961d9a158bc664d781bb663b570) Fix: Ensure correct version in package (#73) (Nicholas C. Zakas)
+* [`82a7e6d`](https://github.com/eslint/eslint-scope/commit/82a7e6d9de8f4fca48e99779e9573dd46adbc18c) Breaking: Switch to ESM (fixes #70) (#71) (Brett Zamir)
+* [`0b4a5f1`](https://github.com/eslint/eslint-scope/commit/0b4a5f132fb65520eee31bcd166078656b6e158e) Update: support class fields (refs eslint/eslint#14343) (#69) (Toru Nagashima)
+* [`39f8cfc`](https://github.com/eslint/eslint-scope/commit/39f8cfc026d9b9b7c02e07368323350e74698f29) Chore: upgrade estraverse to version 5 (#68) (Rouven Weßling)
+* [`ae27ff3`](https://github.com/eslint/eslint-scope/commit/ae27ff3692ab13cf62075b8659f0e17dfa44acd1) Docs: Add range to espree options in README (fixes #66) (#67) (Alan Liang)
+
 v5.1.1 - September 12, 2020
 
 * [`9b528d7`](https://github.com/eslint/eslint-scope/commit/9b528d778c381718c12dabfb7f1c0e0dc6b36e49) Upgrade: esrecurse version to ^4.3.0 (#64) (Timofey Kachalov)
