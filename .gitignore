@@ -9,3 +9,4 @@ npm-debug.log
 .sublimelinterrc
 .eslint-release-info.json
 dist
+*.tgz
