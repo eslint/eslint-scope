@@ -22,10 +22,9 @@
   "license": "BSD-2-Clause",
   "scripts": {
     "build": "rollup -c",
-    "lint": "node Makefile.js lint",
+    "lint": "npm run build && node Makefile.js lint",
     "update-version": "node tools/update-version.js",
-    "pretest": "npm run build",
-    "test": "node Makefile.js test",
+    "test": "npm run build && node Makefile.js test",
     "prepublishOnly": "npm run update-version && npm run build",
     "generate-release": "eslint-generate-release",
     "generate-alpharelease": "eslint-generate-prerelease alpha",
