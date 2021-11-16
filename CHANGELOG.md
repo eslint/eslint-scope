@@ -1,3 +1,9 @@
+v7.0.0 - November 16, 2021
+
+* [`22a55c0`](https://github.com/eslint/eslint-scope/commit/22a55c01d1a28fd3ffd45c8818b49e65bd3e5005) feat!: support class static blocks (#80) (Milos Djermanovic)
+* [`4aafb61`](https://github.com/eslint/eslint-scope/commit/4aafb616212adc39af37064932da912bdc7d9226) build: upgrade eslint-release to v3.2.0 to support conventional commits (#79) (Milos Djermanovic)
+* [`263c762`](https://github.com/eslint/eslint-scope/commit/263c762432c5a3995e30fa814d02b0ed358b0e68) Build: add node v17 (#76) (唯然)
+
 v6.0.0 - July 23, 2021
 
 * [`4ee1d80`](https://github.com/eslint/eslint-scope/commit/4ee1d80ce7dab961d9a158bc664d781bb663b570) Fix: Ensure correct version in package (#73) (Nicholas C. Zakas)
