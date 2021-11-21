@@ -1,3 +1,7 @@
+v7.1.0 - November 20, 2021
+
+* [`d756f1e`](https://github.com/eslint/eslint-scope/commit/d756f1ea974093c3ed7121d17f858254036b9690) feat: Add sourceType:commonjs support (#81) (Nicholas C. Zakas)
+
 v7.0.0 - November 16, 2021
 
 * [`22a55c0`](https://github.com/eslint/eslint-scope/commit/22a55c01d1a28fd3ffd45c8818b49e65bd3e5005) feat!: support class static blocks (#80) (Milos Djermanovic)
