@@ -1,3 +1,10 @@
+v7.1.1 - February 11, 2022
+
+* [`8938109`](https://github.com/eslint/eslint-scope/commit/89381090cef60d8d47aeba111e04f859e063ae41) chore: upgrade espree@9.3.1 eslint-visitor-keys@3.3.0 (#88) (Milos Djermanovic)
+* [`4e1d24c`](https://github.com/eslint/eslint-scope/commit/4e1d24ca4a747c14b37f059543cf08d1e1820b2d) fix: ignore `"use strict"` directives in ES3 (#87) (Milos Djermanovic)
+* [`ceb8bdd`](https://github.com/eslint/eslint-scope/commit/ceb8bdd2cc31f67255e37a961096f9e3320abac6) ci: use node v16 (#84) (Nitin Kumar)
+* [`62e147b`](https://github.com/eslint/eslint-scope/commit/62e147be60c1eb84a40c1918913755acbc2d3a3d) test: add tests with year-based `ecmaVersion` (#83) (Milos Djermanovic)
+
 v7.1.0 - November 20, 2021
 
 * [`d756f1e`](https://github.com/eslint/eslint-scope/commit/d756f1ea974093c3ed7121d17f858254036b9690) feat: Add sourceType:commonjs support (#81) (Nicholas C. Zakas)
