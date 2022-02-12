@@ -11,7 +11,7 @@
     },
     "./package.json": "./package.json"
   },
-  "version": "7.1.0",
+  "version": "7.1.1",
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
   },
