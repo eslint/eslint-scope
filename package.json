@@ -9,7 +9,11 @@
       "import": "./lib/index.js",
       "require": "./dist/eslint-scope.cjs"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./lib/referencer.js": {
+      "import": "./lib/referencer.js",
+      "require": "./lib/referencer.js"
+    }
   },
   "version": "7.1.1",
   "engines": {
