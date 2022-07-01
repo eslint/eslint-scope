@@ -16,6 +16,7 @@
     "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
   },
   "repository": "eslint/eslint-scope",
+  "funding": "https://opencollective.com/eslint",
   "bugs": {
     "url": "https://github.com/eslint/eslint-scope/issues"
   },
