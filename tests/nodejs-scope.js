@@ -38,6 +38,7 @@ describe("nodejsScope option", () => {
         const scopeManager = analyze(ast, { ecmaVersion: 6, nodejsScope: true });
 
         expect(scopeManager.scopes).to.have.length(2);
+        expect(scopeManager.isGlobalReturn()).to.be.true;
 
         let scope = scopeManager.scopes[0];
 
@@ -64,6 +65,7 @@ describe("nodejsScope option", () => {
         const scopeManager = analyze(ast, { ecmaVersion: 6, sourceType: "commonjs" });
 
         expect(scopeManager.scopes).to.have.length(2);
+        expect(scopeManager.isGlobalReturn()).to.be.true;
 
         let scope = scopeManager.scopes[0];
 
@@ -87,6 +89,7 @@ describe("nodejsScope option", () => {
         const scopeManager = analyze(ast, { ecmaVersion: 6, nodejsScope: true, sourceType: "module" });
 
         expect(scopeManager.scopes).to.have.length(3);
+        expect(scopeManager.isGlobalReturn()).to.be.true;
 
         let scope = scopeManager.scopes[0];
 
