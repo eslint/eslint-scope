@@ -1,3 +1,13 @@
+v7.2.0 - April 13, 2023
+
+* [`70c8db1`](https://github.com/eslint/eslint-scope/commit/70c8db16962830f20e27765cd4d1fd0e29b93c08) feat: Add isGlobalReturn method on scopeManager. (#96) (Nicholas C. Zakas)
+* [`3dbad80`](https://github.com/eslint/eslint-scope/commit/3dbad80d98e5bb2453423dc3882500a7d76d6259) chore: add triage action (#95) (Milos Djermanovic)
+* [`34ffedc`](https://github.com/eslint/eslint-scope/commit/34ffedc9645f3e5bf2111f766931efb0ff33040f) ci: add Node v19 (#94) (Milos Djermanovic)
+* [`4c00534`](https://github.com/eslint/eslint-scope/commit/4c005347cd556b4fa97ba0b626decdd0fce95962) ci: update Github actions (#93) (Deepshika S)
+* [`6c8ccf2`](https://github.com/eslint/eslint-scope/commit/6c8ccf223952daff78295907316d8d8c1e93cf89) chore: add funding field (#92) (Deepshika S)
+* [`a8811b8`](https://github.com/eslint/eslint-scope/commit/a8811b89b93a8b6bb6ac7089d893d5686dabbeb8) build: add node v18 (#91) (唯然)
+* [`25abacf`](https://github.com/eslint/eslint-scope/commit/25abacffe690b6141f19d59dc8c0e09599671508) docs: add badges (#89) (Milos Djermanovic)
+
 v7.1.1 - February 11, 2022
 
 * [`8938109`](https://github.com/eslint/eslint-scope/commit/89381090cef60d8d47aeba111e04f859e063ae41) chore: upgrade espree@9.3.1 eslint-visitor-keys@3.3.0 (#88) (Milos Djermanovic)
