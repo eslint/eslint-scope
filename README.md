@@ -36,7 +36,7 @@ import estraverse from 'estraverse';
 const ast = espree.parse(code, { range: true });
 const scopeManager = eslintScope.analyze(ast);
 
-const currentScope = scopeManager.acquire(ast);   // global scope
+let currentScope = scopeManager.acquire(ast);   // global scope
 
 estraverse.traverse(ast, {
     enter (node, parent) {
