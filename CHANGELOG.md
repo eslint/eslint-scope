@@ -1,3 +1,13 @@
+# Changelog
+
+## [7.2.1](https://github.com/eslint/eslint-scope/compare/v7.2.0...v7.2.1) (2023-05-31)
+
+
+### Chores
+
+* run tests on Node.js v20 ([#97](https://github.com/eslint/eslint-scope/issues/97)) ([675f7de](https://github.com/eslint/eslint-scope/commit/675f7de78c312546441fa9b204734c26376710f7))
+* set up release-please ([#99](https://github.com/eslint/eslint-scope/issues/99)) ([6bc2619](https://github.com/eslint/eslint-scope/commit/6bc2619fff2aa401fe43d3fda60e0c127d2d39a8))
+
 v7.2.0 - April 13, 2023
 
 * [`70c8db1`](https://github.com/eslint/eslint-scope/commit/70c8db16962830f20e27765cd4d1fd0e29b93c08) feat: Add isGlobalReturn method on scopeManager. (#96) (Nicholas C. Zakas)
@@ -102,4 +112,3 @@ v3.7.0 - March 17, 2017
 * 049c545 Chore: Fix tests for eslint-scope (#4) (James Henry)
 * f026aab Chore: Update package.json for eslint fork (#1) (James Henry)
 * a94d281 Chore: Update license with JSF copyright (Nicholas C. Zakas)
-
