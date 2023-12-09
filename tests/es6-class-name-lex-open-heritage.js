@@ -49,7 +49,7 @@ describe("ES6 class", () => {
 		let classScope = scopeManager.scopes[1]
 		expect(classScope.type).to.be.equal('class');
 		
-		let classId = classScope.block.id
+		let classId = classScope.block.id;
 		expect(classId).to.be.equal(resovledOfC);
     });
 });
