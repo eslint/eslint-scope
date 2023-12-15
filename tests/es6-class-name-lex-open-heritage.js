@@ -27,7 +27,7 @@ import { expect } from "chai";
 import espree from "./util/espree.js";
 import { analyze } from "../lib/index.js";
 
-describe("ES6 class", () => {
+describe("ES6 class-name-lex-open-heritage", () => {
     it("declaration name creates class scope", () => {
         const ast = espree(`var C = 'outside';
             let cls = class C extends (
