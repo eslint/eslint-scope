@@ -307,6 +307,64 @@ describe("ES6 class", () => {
         expect(scope.references).to.have.length(0);
     });
 
+    it("inner scopes in the class heritage of a class expression are nested in the class scope", () => {
+        const ast = espree(`
+            (class extends function () {} {})
+        `);
+
+        const scopeManager = analyze(ast, { ecmaVersion: 6 });
+
+        expect(scopeManager.scopes).to.have.length(3);
+
+        let scope = scopeManager.scopes[0];
+
+        expect(scope.type).to.be.equal("global");
+        expect(scope.block.type).to.be.equal("Program");
+        expect(scope.isStrict).to.be.false;
+
+        scope = scopeManager.scopes[1];
+        expect(scope.type).to.be.equal("class");
+        expect(scope.block.type).to.be.equal("ClassExpression");
+        expect(scope.isStrict).to.be.true;
+
+        scope = scopeManager.scopes[2];
+        expect(scope.type).to.be.equal("function");
+        expect(scope.block.type).to.be.equal("FunctionExpression");
+        expect(scope.isStrict).to.be.true;
+        expect(scope.upper).to.be.equal(scopeManager.scopes[1]);
+        expect(scopeManager.scopes[1].childScopes).to.have.length(1);
+        expect(scopeManager.scopes[1].childScopes[0]).to.be.equal(scope);
+    });
+
+    it("inner scopes in the class heritage of a class declaration are nested in the class scope", () => {
+        const ast = espree(`
+            class C extends function () {} {}
+        `);
+
+        const scopeManager = analyze(ast, { ecmaVersion: 6 });
+
+        expect(scopeManager.scopes).to.have.length(3);
+
+        let scope = scopeManager.scopes[0];
+
+        expect(scope.type).to.be.equal("global");
+        expect(scope.block.type).to.be.equal("Program");
+        expect(scope.isStrict).to.be.false;
+
+        scope = scopeManager.scopes[1];
+        expect(scope.type).to.be.equal("class");
+        expect(scope.block.type).to.be.equal("ClassDeclaration");
+        expect(scope.isStrict).to.be.true;
+
+        scope = scopeManager.scopes[2];
+        expect(scope.type).to.be.equal("function");
+        expect(scope.block.type).to.be.equal("FunctionExpression");
+        expect(scope.isStrict).to.be.true;
+        expect(scope.upper).to.be.equal(scopeManager.scopes[1]);
+        expect(scopeManager.scopes[1].childScopes).to.have.length(1);
+        expect(scopeManager.scopes[1].childScopes[0]).to.be.equal(scope);
+    });
+
     it("regression #49", () => {
         const ast = espree(`
             class Shoe {
