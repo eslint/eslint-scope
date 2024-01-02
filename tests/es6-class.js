@@ -48,9 +48,8 @@ describe("ES6 class", () => {
         expect(scope.isStrict).to.be.false;
         expect(scope.variables).to.have.length(1);
         expect(scope.variables[0].name).to.be.equal("Derived");
-        expect(scope.references).to.have.length(2);
-        expect(scope.references[0].identifier.name).to.be.equal("Base");
-        expect(scope.references[1].identifier.name).to.be.equal("Derived");
+        expect(scope.references).to.have.length(1);
+        expect(scope.references[0].identifier.name).to.be.equal("Derived");
 
         scope = scopeManager.scopes[1];
         expect(scope.type).to.be.equal("class");
@@ -58,7 +57,8 @@ describe("ES6 class", () => {
         expect(scope.isStrict).to.be.true;
         expect(scope.variables).to.have.length(1);
         expect(scope.variables[0].name).to.be.equal("Derived");
-        expect(scope.references).to.have.length(0);
+        expect(scope.references).to.have.length(1);
+        expect(scope.references[0].identifier.name).to.be.equal("Base");
 
         scope = scopeManager.scopes[2];
         expect(scope.type).to.be.equal("function");
@@ -87,8 +87,7 @@ describe("ES6 class", () => {
         expect(scope.block.type).to.be.equal("Program");
         expect(scope.isStrict).to.be.false;
         expect(scope.variables).to.have.length(0);
-        expect(scope.references).to.have.length(1);
-        expect(scope.references[0].identifier.name).to.be.equal("Base");
+        expect(scope.references).to.have.length(0);
 
         scope = scopeManager.scopes[1];
         expect(scope.type).to.be.equal("class");
@@ -96,7 +95,8 @@ describe("ES6 class", () => {
         expect(scope.isStrict).to.be.true;
         expect(scope.variables).to.have.length(1);
         expect(scope.variables[0].name).to.be.equal("Derived");
-        expect(scope.references).to.have.length(0);
+        expect(scope.references).to.have.length(1);
+        expect(scope.references[0].identifier.name).to.be.equal("Base");
 
         scope = scopeManager.scopes[2];
         expect(scope.type).to.be.equal("function");
@@ -121,12 +121,13 @@ describe("ES6 class", () => {
         expect(scope.block.type).to.be.equal("Program");
         expect(scope.isStrict).to.be.false;
         expect(scope.variables).to.have.length(0);
-        expect(scope.references).to.have.length(1);
-        expect(scope.references[0].identifier.name).to.be.equal("Base");
+        expect(scope.references).to.have.length(0);
 
         scope = scopeManager.scopes[1];
         expect(scope.type).to.be.equal("class");
         expect(scope.block.type).to.be.equal("ClassExpression");
+        expect(scope.references).to.have.length(1);
+        expect(scope.references[0].identifier.name).to.be.equal("Base");
 
         scope = scopeManager.scopes[2];
         expect(scope.type).to.be.equal("function");
@@ -175,6 +176,193 @@ describe("ES6 class", () => {
         expect(scope.references).to.have.length(2);
         expect(scope.references[0].identifier.name).to.be.equal("yuyushiki");
         expect(scope.references[1].identifier.name).to.be.equal("yuyushiki");
+    });
+
+    // https://github.com/eslint/eslint-scope/issues/59
+    it("class heritage may refer class name in class expressions #1", () => {
+        const ast = espree(`
+            const A = class A extends A {}
+        `);
+
+        const scopeManager = analyze(ast, { ecmaVersion: 6 });
+
+        expect(scopeManager.scopes).to.have.length(2);
+
+        let scope = scopeManager.scopes[0];
+
+        expect(scope.type).to.be.equal("global");
+        expect(scope.block.type).to.be.equal("Program");
+        expect(scope.isStrict).to.be.false;
+        expect(scope.variables).to.have.length(1);
+        expect(scope.variables[0].name).to.be.equal("A"); // variable `A` defined by `const A`
+        expect(scope.variables[0].references).to.have.length(1); // init reference `A` in `const A`
+        expect(scope.variables[0].references[0].init).to.be.true;
+        expect(scope.references).to.have.length(1);
+        expect(scope.references[0]).to.be.equal(scope.variables[0].references[0]);
+
+        scope = scopeManager.scopes[1];
+        expect(scope.type).to.be.equal("class");
+        expect(scope.block.type).to.be.equal("ClassExpression");
+        expect(scope.isStrict).to.be.true;
+        expect(scope.variables).to.have.length(1);
+        expect(scope.variables[0].name).to.be.equal("A"); // variable `A` defined by `class A`
+        expect(scope.variables[0].references).to.have.length(1); // reference `A` in `extends A`
+        expect(scope.references).to.have.length(1);
+        expect(scope.references[0].resolved).to.be.equal(scope.variables[0]);
+        expect(scope.references[0]).to.be.equal(scope.variables[0].references[0]);
+    });
+
+    it("class heritage may refer class name in class expressions #2", () => {
+        const ast = espree(`
+            let foo;
+            (class C extends (foo = C, class {}) {});
+        `);
+
+        const scopeManager = analyze(ast, { ecmaVersion: 6 });
+
+        expect(scopeManager.scopes).to.have.length(3);
+
+        let scope = scopeManager.scopes[0];
+
+        expect(scope.type).to.be.equal("global");
+        expect(scope.block.type).to.be.equal("Program");
+        expect(scope.isStrict).to.be.false;
+        expect(scope.variables).to.have.length(1);
+        expect(scope.variables[0].name).to.be.equal("foo");
+        expect(scope.references).to.have.length(0);
+
+        scope = scopeManager.scopes[1];
+        expect(scope.type).to.be.equal("class");
+        expect(scope.block.type).to.be.equal("ClassExpression");
+        expect(scope.isStrict).to.be.true;
+        expect(scope.variables).to.have.length(1);
+        expect(scope.variables[0].name).to.be.equal("C");
+        expect(scope.variables[0].references).to.have.length(1);
+        expect(scope.references).to.have.length(2);
+        expect(scope.references[0].identifier.name).to.be.equal("foo");
+        expect(scope.references[1].identifier.name).to.be.equal("C");
+
+        // `C` in `foo = C` is a reference to variable `C` defined by `class C`
+        expect(scope.references[1].resolved).to.be.equal(scope.variables[0]);
+        expect(scope.references[1]).to.be.equal(scope.variables[0].references[0]);
+
+        scope = scopeManager.scopes[2];
+        expect(scope.type).to.be.equal("class");
+        expect(scope.block.type).to.be.equal("ClassExpression");
+        expect(scope.isStrict).to.be.true;
+        expect(scope.variables).to.have.length(0);
+        expect(scope.references).to.have.length(0);
+    });
+
+    it("class heritage may refer class name in class declarations", () => {
+        const ast = espree(`
+            let foo;
+            class C extends (foo = C, class {}) {}
+            new C();
+        `);
+
+        const scopeManager = analyze(ast, { ecmaVersion: 6 });
+
+        expect(scopeManager.scopes).to.have.length(3);
+
+        let scope = scopeManager.scopes[0];
+
+        expect(scope.type).to.be.equal("global");
+        expect(scope.block.type).to.be.equal("Program");
+        expect(scope.isStrict).to.be.false;
+        expect(scope.variables).to.have.length(2);
+        expect(scope.variables[0].name).to.be.equal("foo");
+        expect(scope.variables[0].references).to.have.length(1);
+        expect(scope.variables[1].name).to.be.equal("C");
+        expect(scope.variables[1].references).to.have.length(1);
+        expect(scope.references).to.have.length(1);
+        expect(scope.references[0].identifier.name).to.be.equal("C"); // `C` in `new C()`
+        expect(scope.references[0].resolved).to.be.equal(scope.variables[1]);
+        expect(scope.references[0]).to.be.equal(scope.variables[1].references[0]);
+
+        scope = scopeManager.scopes[1];
+        expect(scope.type).to.be.equal("class");
+        expect(scope.block.type).to.be.equal("ClassDeclaration");
+        expect(scope.isStrict).to.be.true;
+        expect(scope.variables).to.have.length(1);
+        expect(scope.variables[0].name).to.be.equal("C");
+        expect(scope.variables[0].references).to.have.length(1);
+        expect(scope.references).to.have.length(2);
+        expect(scope.references[0].identifier.name).to.be.equal("foo");
+        expect(scope.references[1].identifier.name).to.be.equal("C"); // `C` in `foo = C`
+
+        /*
+         * `class C` creates two variables `C`: one in the scope where the class
+         * is declared, another in the class scope. References inside the class
+         * should be to the variable in the class scope.
+         */
+        expect(scope.references[1].resolved).to.be.equal(scope.variables[0]);
+        expect(scope.references[1]).to.be.equal(scope.variables[0].references[0]);
+
+        scope = scopeManager.scopes[2];
+        expect(scope.type).to.be.equal("class");
+        expect(scope.block.type).to.be.equal("ClassExpression");
+        expect(scope.isStrict).to.be.true;
+        expect(scope.variables).to.have.length(0);
+        expect(scope.references).to.have.length(0);
+    });
+
+    it("inner scopes in the class heritage of a class expression are nested in the class scope", () => {
+        const ast = espree(`
+            (class extends function () {} {})
+        `);
+
+        const scopeManager = analyze(ast, { ecmaVersion: 6 });
+
+        expect(scopeManager.scopes).to.have.length(3);
+
+        let scope = scopeManager.scopes[0];
+
+        expect(scope.type).to.be.equal("global");
+        expect(scope.block.type).to.be.equal("Program");
+        expect(scope.isStrict).to.be.false;
+
+        scope = scopeManager.scopes[1];
+        expect(scope.type).to.be.equal("class");
+        expect(scope.block.type).to.be.equal("ClassExpression");
+        expect(scope.isStrict).to.be.true;
+
+        scope = scopeManager.scopes[2];
+        expect(scope.type).to.be.equal("function");
+        expect(scope.block.type).to.be.equal("FunctionExpression");
+        expect(scope.isStrict).to.be.true;
+        expect(scope.upper).to.be.equal(scopeManager.scopes[1]);
+        expect(scopeManager.scopes[1].childScopes).to.have.length(1);
+        expect(scopeManager.scopes[1].childScopes[0]).to.be.equal(scope);
+    });
+
+    it("inner scopes in the class heritage of a class declaration are nested in the class scope", () => {
+        const ast = espree(`
+            class C extends function () {} {}
+        `);
+
+        const scopeManager = analyze(ast, { ecmaVersion: 6 });
+
+        expect(scopeManager.scopes).to.have.length(3);
+
+        let scope = scopeManager.scopes[0];
+
+        expect(scope.type).to.be.equal("global");
+        expect(scope.block.type).to.be.equal("Program");
+        expect(scope.isStrict).to.be.false;
+
+        scope = scopeManager.scopes[1];
+        expect(scope.type).to.be.equal("class");
+        expect(scope.block.type).to.be.equal("ClassDeclaration");
+        expect(scope.isStrict).to.be.true;
+
+        scope = scopeManager.scopes[2];
+        expect(scope.type).to.be.equal("function");
+        expect(scope.block.type).to.be.equal("FunctionExpression");
+        expect(scope.isStrict).to.be.true;
+        expect(scope.upper).to.be.equal(scopeManager.scopes[1]);
+        expect(scopeManager.scopes[1].childScopes).to.have.length(1);
+        expect(scopeManager.scopes[1].childScopes[0]).to.be.equal(scope);
     });
 
     it("regression #49", () => {
