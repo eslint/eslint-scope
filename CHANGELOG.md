@@ -1,5 +1,36 @@
 # Changelog
 
+## [8.0.0](https://github.com/eslint/eslint-scope/compare/v7.2.2...v8.0.0) (2024-01-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* use ESTree `directive` property when searching for `"use strict"` ([#118](https://github.com/eslint/eslint-scope/issues/118))
+* class `extends` is evaluated in the class scope ([#116](https://github.com/eslint/eslint-scope/issues/116))
+* Require Node.js ^18.18.0 || ^20.9.0 || >=21.1.0 ([#115](https://github.com/eslint/eslint-scope/issues/115))
+
+### Features
+
+* Require Node.js ^18.18.0 || ^20.9.0 || &gt;=21.1.0 ([#115](https://github.com/eslint/eslint-scope/issues/115)) ([ed67857](https://github.com/eslint/eslint-scope/commit/ed678573aca7b00815ecb3c5dc4eee913b53a162))
+* use ESTree `directive` property when searching for `"use strict"` ([#118](https://github.com/eslint/eslint-scope/issues/118)) ([23fe81f](https://github.com/eslint/eslint-scope/commit/23fe81f5861ade17a2f17f9518fdde376dd2395f))
+
+
+### Bug Fixes
+
+* class `extends` is evaluated in the class scope ([#116](https://github.com/eslint/eslint-scope/issues/116)) ([42ef7a9](https://github.com/eslint/eslint-scope/commit/42ef7a995771f0700fc6af7eee03bab977f272c6))
+
+
+### Documentation
+
+* Update README with analyze() options ([#111](https://github.com/eslint/eslint-scope/issues/111)) ([2122fdb](https://github.com/eslint/eslint-scope/commit/2122fdb237cc0c115cd2473f383f741b1f055791)), closes [#110](https://github.com/eslint/eslint-scope/issues/110)
+
+
+### Chores
+
+* Remove add-to-triage ([#106](https://github.com/eslint/eslint-scope/issues/106)) ([dc75851](https://github.com/eslint/eslint-scope/commit/dc75851b92b47eb37ed617448c0291129db676e1))
+* run tests in Node.js 21 ([#109](https://github.com/eslint/eslint-scope/issues/109)) ([957748e](https://github.com/eslint/eslint-scope/commit/957748e7fb741dd23f521af0c124ce6da0848997))
+* standardize npm script names ([#105](https://github.com/eslint/eslint-scope/issues/105)) ([115ded3](https://github.com/eslint/eslint-scope/commit/115ded3cb6f768a37f0dcb17bb16e2299849e16f))
+
 ## [7.2.2](https://github.com/eslint/eslint-scope/compare/v7.2.1...v7.2.2) (2023-07-27)
 
 
