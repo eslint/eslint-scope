@@ -4,9 +4,7 @@
  * @copyright jQuery Foundation and other contributors, https://jquery.org/
  * MIT License
  */
-/* global echo, exec, exit, set, target */
 
-/* eslint no-console: 0*/
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
@@ -40,15 +38,12 @@ const NODE = "node",
 
     // Utilities - intentional extra space at the end of each string
     MOCHA = `${NODE_MODULES}/mocha/bin/_mocha `,
-    ESLINT = `${NODE} ${NODE_MODULES}/eslint/bin/eslint `,
 
     // If switching back to Istanbul when may be working with ESM
     // ISTANBUL = `${NODE} ${NODE_MODULES}/istanbul/lib/cli.js `,
     C8 = `${NODE} ${NODE_MODULES}/c8/bin/c8.js`,
 
     // Files
-    MAKEFILE = "./Makefile.js",
-    JS_FILES = "lib/**/*.js",
     TEST_FILES = "tests/*.js",
     CJS_TEST_FILES = "tests/*.cjs";
 
@@ -58,39 +53,6 @@ const NODE = "node",
 
 target.all = function() {
     target.test();
-};
-
-target.lint = function() {
-    let errors = 0,
-        lastReturn;
-
-    echo("Validating Makefile.js");
-    lastReturn = exec(ESLINT + MAKEFILE);
-    if (lastReturn.code !== 0) {
-        errors++;
-    }
-
-    echo("Validating JavaScript files");
-    lastReturn = exec(ESLINT + JS_FILES);
-    if (lastReturn.code !== 0) {
-        errors++;
-    }
-
-    echo("Validating JavaScript test files");
-    lastReturn = exec(ESLINT + TEST_FILES);
-    if (lastReturn.code !== 0) {
-        errors++;
-    }
-
-    echo("Validating CJS JavaScript test files");
-    lastReturn = exec(ESLINT + CJS_TEST_FILES);
-    if (lastReturn.code !== 0) {
-        errors++;
-    }
-
-    if (errors) {
-        exit(1);
-    }
 };
 
 target.test = function() {

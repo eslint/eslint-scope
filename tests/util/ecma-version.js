@@ -16,6 +16,7 @@ import * as espree from "espree";
  *
  * getSupportedEcmaVersions({ min: 8 })
  * // => [8, 2017, 9, 2018, 10, 2019, 11, 2020, 12, 2021, 13, 2022]
+ *
  */
 export function getSupportedEcmaVersions({ min = 0 } = {}) {
     return espree.supportedEcmaVersions
