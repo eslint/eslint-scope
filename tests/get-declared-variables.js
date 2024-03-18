@@ -29,7 +29,16 @@ import { analyze } from "../lib/index.js";
 const { visit } = esrecurse;
 
 describe("ScopeManager.prototype.getDeclaredVariables", () => {
-    /* eslint-disable jsdoc/require-jsdoc */
+
+
+    /**
+     * Asserts that nodes of the given type declare expected variables.
+     * @param {Object} ast The AST to check.
+     * @param {string} type The node type to check.
+     * @param {string[][]} expectedNamesList List of expected variable names for each node of the given type.
+     * @throws {Error} If the list of declared variables doesn't match the expected list.
+     * @returns {void}
+     */
     function verify(ast, type, expectedNamesList) {
         const scopeManager = analyze(ast, {
             ecmaVersion: 6,

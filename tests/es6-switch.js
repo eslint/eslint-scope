@@ -21,8 +21,6 @@
 //  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 //  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-/* eslint-disable no-unused-expressions */
-
 import { expect } from "chai";
 import espree from "./util/espree.js";
 import { getSupportedEcmaVersions } from "./util/ecma-version.js";

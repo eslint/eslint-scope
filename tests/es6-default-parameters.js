@@ -21,9 +21,6 @@
 //  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 //  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-/* eslint-disable no-unused-expressions */
-/* eslint-disable guard-for-in */
-
 import { expect } from "chai";
 import espree from "./util/espree.js";
 import { analyze } from "../lib/index.js";
@@ -36,9 +33,7 @@ describe("ES6 default parameters:", () => {
             ArrowExpression: "let foo = (a, b = 0) => {};"
         };
 
-        for (const name in patterns) {
-            const code = patterns[name];
-
+        for (const [name, code] of Object.entries(patterns)) {
             it(name, () => {
                 const numVars = name === "ArrowExpression" ? 2 : 3;
                 const ast = espree(code);
@@ -80,9 +75,7 @@ describe("ES6 default parameters:", () => {
             `
         };
 
-        for (const name in patterns) {
-            const code = patterns[name];
-
+        for (const [name, code] of Object.entries(patterns)) {
             it(name, () => {
                 const numVars = name === "ArrowExpression" ? 1 : 2;
                 const ast = espree(code);
@@ -124,9 +117,7 @@ describe("ES6 default parameters:", () => {
             `
         };
 
-        for (const name in patterns) {
-            const code = patterns[name];
-
+        for (const [name, code] of Object.entries(patterns)) {
             it(name, () => {
                 const numVars = name === "ArrowExpression" ? 1 : 2;
                 const ast = espree(code);
@@ -168,9 +159,7 @@ describe("ES6 default parameters:", () => {
             `
         };
 
-        for (const name in patterns) {
-            const code = patterns[name];
-
+        for (const [name, code] of Object.entries(patterns)) {
             it(name, () => {
                 const numVars = name === "ArrowExpression" ? 1 : 2;
                 const ast = espree(code);
@@ -212,9 +201,7 @@ describe("ES6 default parameters:", () => {
             `
         };
 
-        for (const name in patterns) {
-            const code = patterns[name];
-
+        for (const [name, code] of Object.entries(patterns)) {
             it(name, () => {
                 const ast = espree(code);
 
@@ -255,9 +242,7 @@ describe("ES6 default parameters:", () => {
             `
         };
 
-        for (const name in patterns) {
-            const code = patterns[name];
-
+        for (const [name, code] of Object.entries(patterns)) {
             it(name, () => {
                 const numVars = name === "ArrowExpression" ? 2 : 3;
                 const ast = espree(code);
@@ -299,9 +284,7 @@ describe("ES6 default parameters:", () => {
             `
         };
 
-        for (const name in patterns) {
-            const code = patterns[name];
-
+        for (const [name, code] of Object.entries(patterns)) {
             it(name, () => {
                 const numVars = name === "ArrowExpression" ? 2 : 3;
                 const ast = espree(code);
@@ -343,9 +326,7 @@ describe("ES6 default parameters:", () => {
             `
         };
 
-        for (const name in patterns) {
-            const code = patterns[name];
-
+        for (const [name, code] of Object.entries(patterns)) {
             it(name, () => {
                 const ast = espree(code);
 
