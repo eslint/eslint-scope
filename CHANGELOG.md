@@ -1,5 +1,18 @@
 # Changelog
 
+## [8.0.1](https://github.com/eslint/eslint-scope/compare/v8.0.0...v8.0.1) (2024-03-20)
+
+
+### Documentation
+
+* document Security Policy ([#122](https://github.com/eslint/eslint-scope/issues/122)) ([0d03700](https://github.com/eslint/eslint-scope/commit/0d0370035c3fcd3846bcfed25e2de1c90c204cc8))
+
+
+### Chores
+
+* switch to eslint flat config ([#121](https://github.com/eslint/eslint-scope/issues/121)) ([59b1606](https://github.com/eslint/eslint-scope/commit/59b160624bd725a1254024bcbbd28b7529c04c64))
+* upgrade espree@10.0.1, eslint-visitor-keys@4.0.0 ([#119](https://github.com/eslint/eslint-scope/issues/119)) ([6f95a94](https://github.com/eslint/eslint-scope/commit/6f95a9406e321ba519bbf635ebb8b1ae4b8861e7))
+
 ## [8.0.0](https://github.com/eslint/eslint-scope/compare/v7.2.2...v8.0.0) (2024-01-04)
 
 
