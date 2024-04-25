@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.0.2](https://github.com/eslint/eslint-scope/compare/v8.0.1...v8.0.2) (2024-04-25)
+
+
+### Chores
+
+* run tests in Node.js 22 ([#123](https://github.com/eslint/eslint-scope/issues/123)) ([b11a0b7](https://github.com/eslint/eslint-scope/commit/b11a0b7882f0db75d00c86dc19763f79a3c3e283))
+* update dependency shelljs to ^0.8.5 ([#124](https://github.com/eslint/eslint-scope/issues/124)) ([c6f9226](https://github.com/eslint/eslint-scope/commit/c6f922662bc8ea8178e635bdcbb09e66dbed7656))
+
 ## [8.0.1](https://github.com/eslint/eslint-scope/compare/v8.0.0...v8.0.1) (2024-03-20)
 
 
