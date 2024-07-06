@@ -76,9 +76,9 @@ describe("catch", () => {
             }());
         `);
 
-        const scopeManager = analyze(ast);
+        const scopeManager = analyze(ast, { ecmaVersion: 6 });
 
-        expect(scopeManager.scopes).to.have.length(3);
+        expect(scopeManager.scopes).to.have.length(5);
 
         const globalScope = scopeManager.scopes[0];
 
@@ -96,7 +96,13 @@ describe("catch", () => {
         expect(functionScope.references[0].from).to.be.equal(functionScope);
         expect(functionScope.references[0].resolved).to.be.equal(functionScope.variables[1]);
 
-        const catchScope = scopeManager.scopes[2];
+        const tryBlockScope = scopeManager.scopes[2];
+
+        expect(tryBlockScope.type).to.be.equal("block");
+        expect(tryBlockScope.variables).to.have.length(0);
+        expect(tryBlockScope.references).to.have.length(0);
+
+        const catchScope = scopeManager.scopes[3];
 
         expect(catchScope.type).to.be.equal("catch");
         expect(catchScope.variables).to.have.length(4);
@@ -133,6 +139,12 @@ describe("catch", () => {
         expect(catchScope.references[0].resolved).to.be.equal(catchScope.variables[1]);
         expect(catchScope.references[1].from).to.be.equal(catchScope);
         expect(catchScope.references[1].resolved).to.be.equal(functionScope.variables[1]);
+
+        const catchBlockScope = scopeManager.scopes[4];
+
+        expect(catchBlockScope.type).to.be.equal("block");
+        expect(catchBlockScope.variables).to.have.length(0);
+        expect(catchBlockScope.references).to.have.length(0);
     });
 });
 
