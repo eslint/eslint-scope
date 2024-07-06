@@ -56,8 +56,83 @@ describe("catch", () => {
         expect(scope.type).to.be.equal("catch");
         expect(scope.variables).to.have.length(1);
         expect(scope.variables[0].name).to.be.equal("e");
+        expect(scope.variables[0].defs).to.have.length(1);
+        expect(scope.variables[0].defs[0].type).to.be.equal("CatchClause");
+        expect(scope.variables[0].defs[0].name.type).to.be.equal("Identifier");
+        expect(scope.variables[0].defs[0].name.name).to.be.equal("e");
+        expect(scope.variables[0].defs[0].node.type).to.be.equal("CatchClause");
+        expect(scope.variables[0].defs[0].parent).to.be.equal(null);
         expect(scope.isArgumentsMaterialized()).to.be.true;
         expect(scope.references).to.have.length(0);
+    });
+
+    it("param can be a pattern", () => {
+        const ast = espree(`
+            (function () {
+                const default_id = 0;
+                try {
+                } catch ({ message, id = default_id, args: [arg1, arg2] }) {
+                }
+            }());
+        `);
+
+        const scopeManager = analyze(ast);
+
+        expect(scopeManager.scopes).to.have.length(3);
+
+        const globalScope = scopeManager.scopes[0];
+
+        expect(globalScope.type).to.be.equal("global");
+        expect(globalScope.variables).to.have.length(0);
+        expect(globalScope.references).to.have.length(0);
+
+        const functionScope = scopeManager.scopes[1];
+
+        expect(functionScope.type).to.be.equal("function");
+        expect(functionScope.variables).to.have.length(2);
+        expect(functionScope.variables[0].name).to.be.equal("arguments");
+        expect(functionScope.variables[1].name).to.be.equal("default_id");
+        expect(functionScope.references).to.have.length(1);
+        expect(functionScope.references[0].from).to.be.equal(functionScope);
+        expect(functionScope.references[0].resolved).to.be.equal(functionScope.variables[1]);
+
+        const catchScope = scopeManager.scopes[2];
+
+        expect(catchScope.type).to.be.equal("catch");
+        expect(catchScope.variables).to.have.length(4);
+        expect(catchScope.variables[0].name).to.be.equal("message");
+        expect(catchScope.variables[0].defs).to.have.length(1);
+        expect(catchScope.variables[0].defs[0].type).to.be.equal("CatchClause");
+        expect(catchScope.variables[0].defs[0].name.type).to.be.equal("Identifier");
+        expect(catchScope.variables[0].defs[0].name.name).to.be.equal("message");
+        expect(catchScope.variables[0].defs[0].node.type).to.be.equal("CatchClause");
+        expect(catchScope.variables[0].defs[0].parent).to.be.equal(null);
+        expect(catchScope.variables[1].name).to.be.equal("id");
+        expect(catchScope.variables[1].defs).to.have.length(1);
+        expect(catchScope.variables[1].defs[0].type).to.be.equal("CatchClause");
+        expect(catchScope.variables[1].defs[0].name.type).to.be.equal("Identifier");
+        expect(catchScope.variables[1].defs[0].name.name).to.be.equal("id");
+        expect(catchScope.variables[1].defs[0].node.type).to.be.equal("CatchClause");
+        expect(catchScope.variables[1].defs[0].parent).to.be.equal(null);
+        expect(catchScope.variables[2].name).to.be.equal("arg1");
+        expect(catchScope.variables[2].defs).to.have.length(1);
+        expect(catchScope.variables[2].defs[0].type).to.be.equal("CatchClause");
+        expect(catchScope.variables[2].defs[0].name.type).to.be.equal("Identifier");
+        expect(catchScope.variables[2].defs[0].name.name).to.be.equal("arg1");
+        expect(catchScope.variables[2].defs[0].node.type).to.be.equal("CatchClause");
+        expect(catchScope.variables[2].defs[0].parent).to.be.equal(null);
+        expect(catchScope.variables[3].name).to.be.equal("arg2");
+        expect(catchScope.variables[3].defs).to.have.length(1);
+        expect(catchScope.variables[3].defs[0].type).to.be.equal("CatchClause");
+        expect(catchScope.variables[3].defs[0].name.type).to.be.equal("Identifier");
+        expect(catchScope.variables[3].defs[0].name.name).to.be.equal("arg2");
+        expect(catchScope.variables[3].defs[0].node.type).to.be.equal("CatchClause");
+        expect(catchScope.variables[3].defs[0].parent).to.be.equal(null);
+        expect(catchScope.references).to.have.length(2);
+        expect(catchScope.references[0].from).to.be.equal(catchScope);
+        expect(catchScope.references[0].resolved).to.be.equal(catchScope.variables[1]);
+        expect(catchScope.references[1].from).to.be.equal(catchScope);
+        expect(catchScope.references[1].resolved).to.be.equal(functionScope.variables[1]);
     });
 });
 
