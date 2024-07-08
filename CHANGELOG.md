@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.2](https://github.com/eslint/eslint-scope/compare/v8.0.1...v8.0.2) (2024-07-08)
+
+
+### Bug Fixes
+
+* `Definition#name` in catch patterns should be `Identifier` node ([#127](https://github.com/eslint/eslint-scope/issues/127)) ([8082caa](https://github.com/eslint/eslint-scope/commit/8082caa1a0f9aae0894a0a01fef9efa7a5e509f6))
+
 ## [8.0.1](https://github.com/eslint/eslint-scope/compare/v8.0.0...v8.0.1) (2024-03-20)
 
 
