@@ -4,6 +4,9 @@
 
 # ESLint Scope
 
+> [!Important]
+> Active development for this project has moved to https://github.com/eslint/js. Please open issues/PRs there.
+
 ESLint Scope is the [ECMAScript](http://www.ecma-international.org/publications/standards/Ecma-262.htm) scope analyzer used in ESLint. It is a fork of [escope](http://github.com/estools/escope).
 
 ## Install
